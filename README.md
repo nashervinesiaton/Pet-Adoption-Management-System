@@ -6,7 +6,7 @@
 <body>
 <h2>
 <div class = "flow">
-<img src="img/Flow.png" alt="Flow diagram">
+<img src="img/Header.png" alt="Flow diagram">
 </class>
 </h2>
 
