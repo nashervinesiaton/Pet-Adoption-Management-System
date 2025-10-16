@@ -24,3 +24,12 @@ The system allows an **admin** to add, view, update, and delete pet details such
 - **Backend** - PHP
 - **Database** - MySQL
   
+<html>
+<head>
+<link rel ="stylesheet" type = "text/css" href = "style.css">
+</head>
+<body>
+    <h3>Developers</h3>
+    
+</body>
+</html>
