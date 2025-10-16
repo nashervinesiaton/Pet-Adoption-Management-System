@@ -36,5 +36,6 @@ The system allows an **admin** to add, view, update, and delete pet details such
 - **Backend** - PHP
 - **Database** - MySQL
  <h2>Developers</h2>
+ <img src="img/Team.png">
   </body>
 </html>
