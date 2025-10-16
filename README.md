@@ -4,12 +4,16 @@
 <link rel ="stylesheet" type = "text/css" href = "style.css">
 </head>
 <body>
-    <h2>Developers</h2>
+<h2>
+<div class = "flow">
+<img src="img/Flow.png" alt="Flow diagram">
+</class>
+</h2>
 
 # FurEverHome: Pet Adoption Record System
 
 ## Description
-**FurEver Home** is a simple CRUD-web based application designed to help managed pet records for an animal shelter.
+**FurEver Home** is a simple CRUD-web based application designed to help managed pet records for an animal shelter.ccvvcc
 The system allows an **admin** to add, view, update, and delete pet details such as name, breed, age, and adoption status.
 
 ---
@@ -31,5 +35,6 @@ The system allows an **admin** to add, view, update, and delete pet details such
 - **Frontend:** - HTML, CSS
 - **Backend** - PHP
 - **Database** - MySQL
+ <h2>Developers</h2>
   </body>
 </html>
