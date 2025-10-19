@@ -1,85 +1,226 @@
-<html>
-    <head>
-        <title>FurEverHome</title>
-        <link rel ="stylesheet" type = "text/css" href = "style.css">
-    </head>
-    <body>
-      <header>
-        <div class="header">
-          <div class="logo">Fur<span class="logo-ever">Ever</span><span class="logo-home">Home</span></div>
-          <ul class="nav-bar">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Pets</a></li>
-            <li><a href="#">Adoptions</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#" class="logout-btn">Logout</a></li>
-          </ul>
-        </div>
-      </header>
-      <div class="welcome">
-      <h1>Welcome to FurEverHome</h1>
-      <p>Manage pet adoption records with ease and compassion</p>
-      </div>
-      <button class="Add">Add New Pet</button>
-      <button class="View">View All Pets</button>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FurEverHome — Find a Forever Friend</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta name="description" content="FurEverHome connects local shelters and adopters. Browse verified pet profiles, schedule visits, and get adoption support.">
+</head>
+<body>
+  <header>
+    <div class="header" role="banner">
+      <div class="logo" aria-label="FurEverHome brand">Fur<span class="logo-ever">Ever</span><span class="logo-home">Home</span></div>
+      <nav aria-label="Main navigation">
+        <ul class="nav-bar">
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Pets</a></li>
+          <li><a href="#">Adoptions</a></li>
+          <li><a href="#">Reports</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#" class="logout-btn">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-      <div class = "containers">
-        <div class="container-1">
-        </div>
-        <div class="container-2">
-      </div>
-        <div class="container-3">
-        </div>
-        <div class="container-4">
+  <!-- HERO -->
+  <main>
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1 id="hero-title">Find a Forever Friend — Adopt, Rehome, or Help Local Pets Today</h1>
+          <p class="hero-sub">A simple, safe platform connecting small shelters and loving homes. Browse adoptable pets, list animals in need, and get adoption support.</p>
+          <div class="hero-ctas">
+            <button class="btn primary" id="btn-adopt">Adopt a Pet</button>
+            <button class="btn outline" id="btn-list">List a Pet for Adoption</button>
           </div>
+          <p class="hero-small">Free profiles · Verified partners · 30-day adoption support</p>
         </div>
-    
-    <h1 class="preview">Pet List Preview</h1>
-    <div class="pet-list">
-        <div class="pet-card">
-            <div class="pet-image"><img src="img/sample 1.jpg"></div>
-            <div class="pet-info">
-                <h2>Erden</h2>
-                <p>Age: 3 Years Old</p>
-                <p>Breed: Domestic Shorthair</p>
-                <p>Gender: Male</p>
-        </div>
-        <div class="pet-actions">
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
-            <button class="view-btn">View</button>
-        </div>
-    </div>
-    <div class="pet-card">
-        <div class="pet-image"><img src="img/sample 2.jpg"></div>
-        <div class="pet-info">
-            <h2>Ervine</h2>
-            <p>Age: 2 Years Old</p>
-            <p>Breed: Golden Retriever</p>
-            <p>Gender: Male</p>
-        </div>
-        <div class="pet-actions">
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
-            <button class="view-btn">View</button>
-        </div>
-    </div>
-    <div class="pet-card">
-        <div class="pet-image"><img src="img/sample 3.jpg"></div>
-        <div class="pet-info">
-            <h2>Ebenezer</h2>
-            <p>Age: 2 Years Old</p>
-            <p>Breed: Bulldog</p>
-            <p>Gender: Male</p>
-        </div>
-        <div class="pet-actions">
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
-            <button class="view-btn">View</button>
-        </div>
-    </div>
-</div>
 
-    </body>
+        <div class="hero-visual" aria-hidden="true">
+          <!-- Decorative illustrative image; replace src with your asset -->
+          <img src="img/hero-placeholder.jpg" alt="Smiling family with a dog and cat" />
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" aria-label="Key statistics">
+      <div class="stat-card stat-available">
+        <div class="stat-number" id="stat-available">24</div>
+        <div class="stat-label">Available Pets</div>
+      </div>
+      <div class="stat-card stat-pending">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Pending Adoptions</div>
+      </div>
+      <div class="stat-card stat-adopted">
+        <div class="stat-number">102</div>
+        <div class="stat-label">Adopted This Year</div>
+      </div>
+      <div class="stat-card stat-partners">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Shelters Partnered</div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits" aria-labelledby="benefits-title">
+      <h2 id="benefits-title">Why FurEverHome</h2>
+      <div class="benefit-grid">
+        <div class="benefit">
+          <h3>Find the Perfect Match</h3>
+          <p>Smart filters by size, age, temperament, and energy level to help pets and owners click.</p>
+        </div>
+        <div class="benefit">
+          <h3>Trusted & Verified</h3>
+          <p>Partner shelters and vets are verified. We support you through paperwork and health checks.</p>
+        </div>
+        <div class="benefit">
+          <h3>Reduce Shelter Overflow</h3>
+          <p>Streamlined rehoming and community support lower surrender rates and wasted resources.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" aria-labelledby="testimonials-title">
+      <h2 id="testimonials-title">Success Stories</h2>
+      <div class="testimonial-cards">
+        <blockquote class="testimonial">
+          <p>“FurEverHome matched me with Luna in 2 weeks. Support through the process made us confident.”</p>
+          <cite>— Marissa R., Adopter</cite>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>“Our micro-shelter reached adopters across town — adoptions doubled.”</p>
+          <cite>— Bantay P., Shelter Volunteer</cite>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>“Clear vet checks and paperwork made the adoption seamless.”</p>
+          <cite>— Dr. Rey Santos, Vet Partner</cite>
+        </blockquote>
+      </div>
+      <div class="trust-bar">Partnered with local vets • 30-day adoption support • Secure profiles • Rating: 4.9 ★</div>
+    </section>
+
+    <!-- MISSION / STORY -->
+    <section class="mission" aria-labelledby="mission-title">
+      <h2 id="mission-title">Our Mission: Healthy Pets, Happy Communities</h2>
+      <p>At FurEverHome we believe every animal deserves a caring home. We empower shelters, volunteers, and families to find safe, loving matches without bureaucracy.</p>
+      <p>We combine human-centered design and local partnerships to reduce shelter overflow, support animal health, and build long-term owner success through education and follow-up support.</p>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how" aria-labelledby="how-title">
+      <h2 id="how-title">How It Works</h2>
+      <ol class="how-steps">
+        <li><strong>Search</strong> — Browse pets by needs, photos, and temperament.</li>
+        <li><strong>Connect</strong> — Message the shelter or owner and schedule a meet.</li>
+        <li><strong>Adopt / Support</strong> — Complete digital forms, get vet-check support, and finalize adoption.</li>
+      </ol>
+    </section>
+
+    <!-- GUARANTEE -->
+    <section class="guarantee" aria-labelledby="guarantee-title">
+      <h2 id="guarantee-title">Safe, Supported, and Transparent</h2>
+      <ul class="guarantee-list">
+        <li>Pre-adoption vet screenings for every pet.</li>
+        <li>Secure profiles and verified partner shelters.</li>
+        <li>30-day adoption support and return policy.</li>
+        <li>Clear fee breakdown — no hidden costs.</li>
+      </ul>
+    </section>
+
+    <!-- CALL TO ACTION BANNER -->
+    <section class="cta-banner" role="region" aria-label="Call to action">
+      <div class="cta-inner">
+        <h2>Ready to meet your new companion?</h2>
+        <div>
+          <button class="btn primary">Adopt a Pet — Browse Now</button>
+          <button class="btn outline">List a Pet — Get Started</button>
+        </div>
+        <p class="support-line">Need help? Call our adoption support hotline: (XXX) XXX-XXXX</p>
+      </div>
+    </section>
+
+    <!-- EXISTING PET LIST PREVIEW (keeps your original pet cards) -->
+    <h1 class="preview">Pet List Preview</h1>
+    <div class="pet-list" role="list" aria-label="Pet list preview">
+      <div class="pet-card" role="listitem" aria-labelledby="pet-erden">
+        <div class="pet-image"><img src="img/sample 1.jpg" alt="Erden the cat"></div>
+        <div class="pet-info">
+          <h2 id="pet-erden">Erden</h2>
+          <p>Age: 3 Years Old</p>
+          <p>Breed: Domestic Shorthair</p>
+          <p>Gender: Male</p>
+        </div>
+        <div class="pet-actions">
+          <button class="edit-btn" aria-label="Edit Erden">Edit</button>
+          <button class="delete-btn" aria-label="Delete Erden">Delete</button>
+          <button class="view-btn" aria-label="View Erden profile">View</button>
+        </div>
+      </div>
+
+      <div class="pet-card" role="listitem" aria-labelledby="pet-ervine">
+        <div class="pet-image"><img src="img/sample 2.jpg" alt="Ervine the dog"></div>
+        <div class="pet-info">
+          <h2 id="pet-ervine">Ervine</h2>
+          <p>Age: 2 Years Old</p>
+          <p>Breed: Golden Retriever</p>
+          <p>Gender: Male</p>
+        </div>
+        <div class="pet-actions">
+          <button class="edit-btn" aria-label="Edit Ervine">Edit</button>
+          <button class="delete-btn" aria-label="Delete Ervine">Delete</button>
+          <button class="view-btn" aria-label="View Ervine profile">View</button>
+        </div>
+      </div>
+
+      <div class="pet-card" role="listitem" aria-labelledby="pet-ebenezer">
+        <div class="pet-image"><img src="img/sample 3.jpg" alt="Ebenezer the bulldog"></div>
+        <div class="pet-info">
+          <h2 id="pet-ebenezer">Ebenezer</h2>
+          <p>Age: 2 Years Old</p>
+          <p>Breed: Bulldog</p>
+          <p>Gender: Male</p>
+        </div>
+        <div class="pet-actions">
+          <button class="edit-btn" aria-label="Edit Ebenezer">Edit</button>
+          <button class="delete-btn" aria-label="Delete Ebenezer">Delete</button>
+          <button class="view-btn" aria-label="View Ebenezer profile">View</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="#" aria-label="Adopt">Adopt</a> ·
+        <a href="#" aria-label="List a pet">List a Pet</a> ·
+        <a href="#" aria-label="About us">About</a> ·
+        <a href="#" aria-label="Partner with us">Partner</a> ·
+        <a href="#" aria-label="Contact">Contact</a>
+      </div>
+      <div class="newsletter">
+        <label for="newsletter-email" class="sr-only">Newsletter email</label>
+        <input id="newsletter-email" type="email" placeholder="Your email for adoption tips" />
+        <button class="btn small">Subscribe</button>
+      </div>
+      <div class="legal">© <span id="year"></span> FurEverHome — Privacy · Terms</div>
+    </div>
+  </footer>
+
+  <script>
+    // small JS to populate dynamic year and accessible stat update (no external libs)
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // You can programmatically update stats from your backend. Example:
+    // document.getElementById('stat-available').textContent = fetchedData.availablePets;
+  </script>
+</body>
 </html>
