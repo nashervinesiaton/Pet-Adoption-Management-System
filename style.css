@@ -323,4 +323,46 @@
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
         }
+
+    /*About Section*/
+    .about{
+        background: 
+        linear-gradient(135deg, #f8fafc 0%, #e6f2ed 100%);
+        background-color: #fff;
+        padding: 60px 0 80px 0;
+        width: 100%;
+    }
+    .about-image{
+        width: 250px;
+        height: 250px;
+        border-radius: 20px;
+        float: left;
+        margin-left: 150px;
+        margin-right: 20px;
+        object-fit: cover;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }  
+    .about-image:hover{
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+        
+    
+    .about h2{
+        text-align: end;
+        font-size: 50px;
+        padding: 20px;
+        color: #043A2A;
+        margin-right: 80px;
+        
+    }
+    .about p{   
+        text-align: end;
+        font-size: 18px;
+        padding: 0 20px 20px 20px;
+        color: #043A2A;
+        margin-right: 80px;
+    }
+
+
         
