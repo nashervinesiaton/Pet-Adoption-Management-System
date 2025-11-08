@@ -97,10 +97,61 @@
             <p>FurEverHome is a simple and user-friendly web system that helps animal shelters manage <br>
             their pet adoption records efficiently— ensuring every pet’s journey toward a loving<br>
             home is well-documented and cared for.</p>
-        </section>
+        </section>  
+
+    <section class="Members">
+        <h2>Meet the Team</h2>
+        <p class="description">We are the dedicated team behind FurEverHome. Driven by our shared mission, we combine development, design,
+            and system expertise to create a trustworthy, efficient, and compassionate platform that connects pets with their forever families
+        </p>
+        <div class="team-row">
+            <div class="team-cards">
+                <img src="img/member1.jpg" class="member-photo">
+                <h3>Nash Ervine Siaton</h3>
+                <p class="role">Frontend Developer</p>
+                <p class="bio">
+                    Oversees the system’s development and ensures <br>everything runs smoothly and efficiently.
+                </p>
+            </div>
+            <div class="team-cards">
+                <img src="img/member2.jpg" class="member-photo">
+                <h3>Erden Jhed Teope</h3>
+                <p class="role">UI/UX Designer</p>
+                <p class="bio">
+                    Designs an intuitive and engaging interface that enhances user experience.
+                </p>
+            </div>
+            <div class="team-cards">
+                <img src="img/member3.jpg" class="member-photo">
+                <h3>Ebenezer Danila</h3>
+                <p class="role">Backend Developer</p>
+                <p class="bio">
+                     Manages the backend system and ensures data is secure and well-integrated.
+                </p>
+            </div>
+        </div>
+    </section>
     </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-paw"></i> FurEverHome
+            </div>
+            <div class="footer-links">
+                <a href="#dashboard">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+           
+            <div class="footer-copy">
+                © 2025 FurEverHome. All rights reserved.
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>
 
-</body>
-</html>
+
+
