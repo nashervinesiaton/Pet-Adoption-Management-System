@@ -406,6 +406,9 @@ body {
     text-align: center;
     font-size: 17px;
     max-width: 800px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    font-weight: 300;
 }
 
 
@@ -434,7 +437,7 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 .team-cards:hover {
-  transform: scale(1.02);
+  transform: scale(1.07);
   transition: transform 0.3s ease;
 }
 .member-photo {
