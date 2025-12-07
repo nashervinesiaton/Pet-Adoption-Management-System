@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.log-in-container {
+    height: 500px;
+    width: 50%;
+    margin: auto;
+    background: #ffff;
+    border: 2px solid #6fb359;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-top: 70px;
+}
+
+.login-image{
+    width: 40%;
+    height: 100%;
+    float: left;
+    border-radius: 15px 0 0 15px;
+}
+
+.login-info{
+    width: 60%;
+    height: 100%;
+    float: right;
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-info h2 {
+    font-size: 32px;
+    color: #0A4b43;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-form label {
+    font-weight: 600;
+    color: #0A4b43;
+    margin-bottom: 5px;
+}
+
+.login-form input {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    transition: border-color 0.3s;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: #6fb359;
+    box-shadow: 0 0 5px rgba(111, 179, 89, 0.3);
+}
+
+.btn-login {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #6fb359 0%, #5a9645 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(111, 179, 89, 0.4);
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FurEverHome - Log-in</title>
+    <link rel="stylesheet" href="assets/css/login.css" />
+    </head>
+
+<body>  
+    <div class="log-in-container">
+        <img src = "assets/img/log-in-img.jpg" alt="Log-in Image" class="login-image"/>
+        <div class="login-info">
+            <h2>Admin Log-In</h2>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required />
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required />
+
+                <button type="submit" class="btn-login">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            // Simple hardcoded credentials (change these)
+            if (username === "admin" && password === "admin123") {
+                window.location.href = "admin_dashboard.html";
+            } else {
+                alert("Invalid username or password");
+            }
+        }
+    </script>
+</body>

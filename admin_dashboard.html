@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FurEverHome - Dashboard</title>
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h1>FurEverHome</h1>
+        <ul class="sidebar-contents">
+            <p>MAIN</p>
+            <li><a href="admin_dashboard.html" class="active"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="inbox.html"><i class="fas fa-inbox"></i> Inbox</a></li>
+            <p>ANIMALS</p>
+            <li><a href="all_pets.html"><i class="fas fa-paw"></i> All Pets</a></li>
+            <li><a href="medical.html"><i class="fas fa-stethoscope"></i> Medical Bay</a></li>
+            <li><a href="behavioral.html"><i class="fas fa-brain"></i> Behavioral Logs</a></li>
+            <p>OPERATIONS</p>
+            <li><a href="adoptions.html"><i class="fas fa-heart"></i> Adoptions</a></li>
+            <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
+            <li><a href="inventory.html"><i class="fas fa-box"></i> Inventory</a></li>
+            <button class="add">+ Add New Pet</button>
+        </ul>
+    </aside>
+
+    <div class="main-container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search pets, applicants, or tag numbers..." />
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+
+                <div class="admin-profile">
+                    <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
+                    <div class="profile-info">
+                        <p class="profile-name">Admin User</p>
+                        <p class="profile-role">Administrator</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <h1>Command Center</h1>
+            <p> Welcome back! Here's whats happening today.</p>
+
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-icon occupancy">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Occupancy</h3>
+                    <p class="stat-number">38/50</p>
+                    <h4>Kennels</h4>
+                    <div class="stat-progress">
+                        <div class="progress-bar" style="width: 76%;"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon adoption-rate">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Adoption Rate</h3>
+                    <p class="stat-number">+12%</p>
+                    <h4>This Month</h4>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon medical">
+                        <i class="fas fa-triangle-exclamation"></i>
+                    </div>
+                    <h3>Medical Alerts</h3>
+                    <p class="stat-number" style="color: #e91e63;">3</p>
+                    <h4>Critical</h4>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon pending">
+                        <i class="fas fa-clipboard"></i>
+                    </div>
+                    <h3>Pending Applications</h3>
+                    <p class="stat-number">8</p>
+                    <h4>Reviews</h4>
+                </div>
+
+            </div>
+
+            <div class="feed-priorities-wrapper">
+              <div class="activity-feed">
+                <div class="activity-header">
+                    <h2>Activity Feed</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-item">
+                        <div class="activity-icon pet-intake">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h3>Dog "Rex" intake processed</h3>
+                            <p>New intake - 2yr old German Shepherd, male</p>
+                        </div>
+                        <div class="activity-time">
+                            <i class="fas fa-clock"></i>
+                            <span>10 minutes ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon application">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h3>Application for "Luna" submitted</h3>
+                            <p>Johnson family - home visit scheduled</p>
+                        </div>
+                        <div class="activity-time">
+                            <i class="fas fa-clock"></i>
+                            <span>1 hour ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon adoption">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h3>"Buddy" adoption finalized</h3>
+                            <p>Trial period completed successfully</p>
+                        </div>
+                        <div class="activity-time">
+                            <i class="fas fa-clock"></i>
+                            <span>2 hours ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon medical">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h3>Vaccination due for "Whiskers"</h3>
+                            <p>Rabies booster required within 7 days</p>
+                        </div>
+                        <div class="activity-time">
+                            <i class="fas fa-clock"></i>
+                            <span>3 hours ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon pet-intake">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h3>Cat "Mittens" intake processed</h3>
+                            <p>Stray - approx 1yr old, female</p>
+                        </div>
+                        <div class="activity-time">
+                            <i class="fas fa-clock"></i>
+                            <span>5 hours ago</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon application">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h3>Application for "Max" submitted</h3>
+                            <p>Smith family - pending review</p>
+                        </div>
+                        <div class="activity-time">
+                            <i class="fas fa-clock"></i>
+                            <span>6 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+               <div class="priorities-section">
+                <div class="priorities-header">
+                    <h2>Today's Priorities</h2>
+                    <span class="pending-count">5 pending</span>
+                </div>
+                <div class="priorities-list">
+                    <div class="priority-task">
+                        <input type="checkbox" id="task1" class="priority-checkbox" />
+                        <label for="task1">Vaccinate Litter B</label>
+                        <span class="priority-badge high">High Priority</span>
+                    </div>
+
+                    <div class="priority-task">
+                        <input type="checkbox" id="task2" class="priority-checkbox" />
+                        <label for="task2">Home Visit: 2 PM</label>
+                        <span class="priority-badge high">High Priority</span>
+                    </div>
+
+                    <div class="priority-task">
+                        <input type="checkbox" id="task3" class="priority-checkbox" />
+                        <label for="task3">Review adoption application - Rex</label>
+                    </div>
+
+                    <div class="priority-task completed">
+                        <input type="checkbox" id="task4" class="priority-checkbox" checked />
+                        <label for="task4">Order dog food supplies</label>
+                    </div>
+
+                    <div class="priority-task">
+                        <input type="checkbox" id="task5" class="priority-checkbox" />
+                        <label for="task5">Update website with new arrivals</label>
+                    </div>
+
+                    <div class="priority-task">
+                        <input type="checkbox" id="task6" class="priority-checkbox" />
+                        <label for="task6">Schedule behavioral assessment</label>
+                    </div>
+
+                    <div class="add-task">
+                        <a href="#"><i class="fas fa-plus"></i> Add Task</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

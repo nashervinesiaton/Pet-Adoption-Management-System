@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: "Roboto", sans-serif;
-  background: #0A4b43;
+  
   color: white;
 }
 
@@ -21,10 +21,9 @@ body {
   justify-content: space-between;  
   max-width: 900px;   /* make the navbar area narrower */
   margin: 0 auto;      /* center it */
-  padding: 1.2rem 3rem;/* smaller left/right padding than before */
+  padding: 2rem 4rem;/* smaller left/right padding than before */
   background: linear-gradient(135deg, #83CC75 0%, #6fb359 100%);
   border-radius: 0rem 0rem 25rem 25rem;
-  
   cursor: pointer;
   transition: all 0.3s ease;
 }
