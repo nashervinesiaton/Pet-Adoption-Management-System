@@ -123,6 +123,33 @@
                 </div>
             </div>
         </section>
+<script type="module">
+          // Import the functions you need from the SDKs you need
+          // Using the Modular SDK (v10.12.2)
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+          import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+          
+          // Use these imports if you need Authentication or Database later:
+          // import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+          // import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+          // TODO: Replace the following with your app's Firebase project configuration
+          // You can find this in your Firebase Console -> Project Settings -> General -> "Your apps"
+          const firebaseConfig = {
+            apiKey: "REPLACE_WITH_YOUR_API_KEY",
+            authDomain: "REPLACE_WITH_YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "REPLACE_WITH_YOUR_PROJECT_ID",
+            storageBucket: "REPLACE_WITH_YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "REPLACE_WITH_YOUR_SENDER_ID",
+            appId: "REPLACE_WITH_YOUR_APP_ID",
+            measurementId: "REPLACE_WITH_YOUR_MEASUREMENT_ID"
+          };
+
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+          const analytics = getAnalytics(app);
+
+          // Log to console to verify connection
+          console.log("Firebase initialized successfully:", app);
     </body>
 </html>
