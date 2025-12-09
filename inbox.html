@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FurEverHome - Dashboard</title>
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h1>FurEverHome</h1>
+        <ul class="sidebar-contents">
+            <p>MAIN</p>
+            <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="inbox.html"class="active"><i class="fas fa-inbox"></i> Inbox</a></li>
+            <p>ANIMALS</p>
+            <li><a href="all_pets.html"><i class="fas fa-paw"></i> All Pets</a></li>
+            <li><a href="medical.html"><i class="fas fa-stethoscope"></i> Medical Bay</a></li>
+            <li><a href="behavioral.html"><i class="fas fa-brain"></i> Behavioral Logs</a></li>
+            <p>OPERATIONS</p>
+            <li><a href="adoptions.html"><i class="fas fa-heart"></i> Adoptions</a></li>
+            <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
+            <li><a href="inventory.html"><i class="fas fa-box"></i> Inventory</a></li>
+            <button class="add">+ Add New Pet</button>
+        </ul>
+    </aside>
+
+    <div class="main-container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search pets, applicants, or tag numbers..." />
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+
+                <div class="admin-profile">
+                    <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
+                    <div class="profile-info">
+                        <p class="profile-name">Admin User</p>
+                        <p class="profile-role">Administrator</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <h1>Inbox</h1>
+            <p>Manage communication with adopters, foster parents, and volunteers</p>
+
+            <div class="inbox-container">
+                <!-- Conversation List -->
+                <div class="conversation-list">
+                    <div class="search-conversations">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search conversations..." />
+                    </div>
+
+                    <div class="conversations">
+                        <div class="conversation-item active">
+                            <div class="avatar">SJ</div>
+                            <div class="conversation-info">
+                                <h3>Sarah Johnson</h3>
+                                <p class="role">Adopter</p>
+                                <p class="preview">Thank you! When can we sched...</p>
+                                <span class="time">2m ago</span>
+                            </div>
+                            <span class="online-indicator"></span>
+                        </div>
+
+                        <div class="conversation-item">
+                            <div class="avatar">MC</div>
+                            <div class="conversation-info">
+                                <h3>Mike Chen</h3>
+                                <p class="role">Foster Parent</p>
+                                <p class="preview">Luna is doing great! She loves th...</p>
+                                <span class="time">1h ago</span>
+                            </div>
+                        </div>
+
+                        <div class="conversation-item">
+                            <div class="avatar">ED</div>
+                            <div class="conversation-info">
+                                <h3>Emily Davis</h3>
+                                <p class="role">Volunteer</p>
+                                <p class="preview">I can help with the weekend ado...</p>
+                                <span class="time">3h ago</span>
+                            </div>
+                        </div>
+
+                        <div class="conversation-item">
+                            <div class="avatar">TW</div>
+                            <div class="conversation-info">
+                                <h3>Tom Wilson</h3>
+                                <p class="role">Adopter</p>
+                                <p class="preview">Perfect! See you then.</p>
+                                <span class="time">1d ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message Thread -->
+                <div class="message-thread">
+                    <div class="thread-header">
+                        <div class="thread-user">
+                            <h2>Sarah Johnson</h2>
+                            <p>Adopter</p>
+                        </div>
+                        <a href="#" class="view-profile">View Profile</a>
+                    </div>
+
+                    <div class="messages">
+                        <div class="message incoming">
+                            <div class="message-bubble">
+                                <p>Hi, I submitted an application for Rex. Any updates?</p>
+                                <span class="message-time">10:30 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="message outgoing">
+                            <div class="message-bubble">
+                                <p id="response">Hello Sarah! We reviewed your application and everything looks great. We'd like to move forward with a home visit.</p>
+                                <span class="message-time">10:45 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="message incoming">
+                            <div class="message-bubble">
+                                <p>Thank you! When can we schedule the home visit?</p>
+                                <span class="message-time">10:50 AM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message-input">
+                        <i class="fas fa-paperclip"></i>
+                        <input type="text" placeholder="Type your message..." />
+                        <button class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
