@@ -998,3 +998,44 @@ main p{
 .pet-age {
     font-weight: 500;
 }
+
+/* Medical Page Styles */
+.critical-container{
+    width: 1200px;
+    height: 300px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+.table-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.table-header h2{
+    font-size: 15px;
+    margin: 0;
+    font-weight: 100;
+    margin-left: 30px;
+}
+
+.table-header span{
+    font-size: 13px;
+    color: white;
+    font-weight: 500;
+    background-color: red;
+    padding: 7px 15px;
+    border-radius: 10px;
+}
+
+.critical-pets{
+    width: 1150px;
+    height: 80px;
+    background-color: rgb(194, 192, 192);
+    border-radius: 12px;
+    margin-top: 15px;
+}
