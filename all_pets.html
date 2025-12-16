@@ -3,36 +3,43 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FurEverHome - Dashboard</title>
+    <title>FurEverHome - All Pets</title>
+
     <link rel="stylesheet" href="assets/css/admin.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
 <body>
+
+    <!-- SIDEBAR -->
     <aside class="sidebar">
         <h1>FurEverHome</h1>
         <ul class="sidebar-contents">
             <p>MAIN</p>
             <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
             <li><a href="inbox.html"><i class="fas fa-inbox"></i> Inbox</a></li>
+
             <p>ANIMALS</p>
             <li><a href="all_pets.html" class="active"><i class="fas fa-paw"></i> All Pets</a></li>
             <li><a href="medical.html"><i class="fas fa-stethoscope"></i> Medical Bay</a></li>
-            <li><a href="behavioral.html"><i class="fas fa-brain"></i> Behavioral Logs</a></li>
+
             <p>OPERATIONS</p>
-            <li><a href="adoptions.html"><i class="fas fa-heart"></i> Adoptions</a></li>
-            <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
-            <li><a href="inventory.html"><i class="fas fa-box"></i> Inventory</a></li>
+            <li><a href="#"><i class="fas fa-heart"></i> Adoptions</a></li>
+            <li><a href="#"><i class="fas fa-users"></i> Foster Network</a></li>
+
             <button class="add">+ Add New Pet</button>
         </ul>
     </aside>
 
+    <!-- MAIN CONTENT -->
     <div class="main-container">
+
+        <!-- NAVBAR -->
         <nav class="navbar">
             <div class="navbar-left">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search pets, applicants, or tag numbers..." />
+                    <input type="text" placeholder="Search pets..." />
                 </div>
             </div>
 
@@ -43,7 +50,7 @@
                 </div>
 
                 <div class="admin-profile">
-                    <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
+                    <img src="assets/img/admin-profile.jpg" class="profile-img" />
                     <div class="profile-info">
                         <p class="profile-name">Admin User</p>
                         <p class="profile-role">Administrator</p>
@@ -53,81 +60,67 @@
             </div>
         </nav>
 
+        <!-- PAGE CONTENT -->
         <main>
             <h1>All Pets</h1>
-            <p>6 animals in the system</p>
+            <p>Animals loaded from Firebase</p>
 
-            <div class="pets-grid">
-                <div class="pet-card">
-                    <div class="pet-image-container">
-                        <img src="assets/img/all_pets_img(1).jpg" alt="Luna" class="pet-image"/>
-                        <span class="availability-badge available">Available</span>
-                    </div>
-                    <div class="pet-info">
-                        <h3 class="pet-name">Luna</h3>
-                        <p class="pet-breed">Golden Retriever</p>
-                        <p class="pet-details"><span class="pet-type">Dog</span> • <span class="pet-age">3 years</span></p>
-                    </div>
-                </div>
-
-                <div class="pet-card">
-                    <div class="pet-image-container">
-                        <img src="assets/img/all_pets_img(2).jpg" alt="Buddy" class="pet-image"/>
-                        <span class="availability-badge available">Available</span>
-                    </div>
-                    <div class="pet-info">
-                        <h3 class="pet-name">Buddy</h3>
-                        <p class="pet-breed">Labrador Retriever</p>
-                        <p class="pet-details"><span class="pet-type">Dog</span> • <span class="pet-age">2 years</span></p>
-                    </div>
-                </div>
-
-                <div class="pet-card">
-                    <div class="pet-image-container">
-                        <img src="assets/img/all_pets_img(3).jpg" alt="Whiskers" class="pet-image"/>
-                        <span class="availability-badge adopted">Adopted</span>
-                    </div>
-                    <div class="pet-info">
-                        <h3 class="pet-name">Whiskers</h3>
-                        <p class="pet-breed">Tabby Cat</p>
-                        <p class="pet-details"><span class="pet-type">Cat</span> • <span class="pet-age">1 year</span></p>
-                    </div>
-                </div>
-
-                <div class="pet-card">
-                    <div class="pet-image-container">
-                        <img src="assets/img/all_pets_img(4).jpg" alt="Rex" class="pet-image"/>
-                        <span class="availability-badge available">Available</span>
-                    </div>
-                    <div class="pet-info">
-                        <h3 class="pet-name">Rex</h3>
-                        <p class="pet-breed">German Shepherd</p>
-                        <p class="pet-details"><span class="pet-type">Dog</span> • <span class="pet-age">4 years</span></p>
-                    </div>
-                </div>
-
-                <div class="pet-card">
-                    <div class="pet-image-container">
-                        <img src="assets/img/all_pets_img(5).jpg" alt="Mittens" class="pet-image"/>
-                        <span class="availability-badge on-hold">On hold</span>
-                    </div>
-                    <div class="pet-info">
-                        <h3 class="pet-name">Mittens</h3>
-                        <p class="pet-breed">Siamese Cat</p>
-                        <p class="pet-details"><span class="pet-type">Cat</span> • <span class="pet-age">6 months</span></p>
-                    </div>
-                </div>
-
-                <div class="pet-card">
-                    <div class="pet-image-container">
-                        <img src="assets/img/all_pets_img(6).jpg" alt="Max" class="pet-image"/>
-                        <span class="availability-badge available">Available</span>
-                    </div>
-                    <div class="pet-info">
-                        <h3 class="pet-name">Max</h3>
-                        <p class="pet-breed">Beagle</p>
-                        <p class="pet-details"><span class="pet-type">Dog</span> • <span class="pet-age">2 years</span></p>
-                    </div>
-                </div>
-            </div>
+            <!-- 🔥 PETS FROM FIREBASE WILL LOAD HERE -->
+            <div class="pets-grid" id="petsGrid"></div>
         </main>
+    </div>
+
+    <!-- 🔥 FIREBASE SCRIPT -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // ✅ YOUR REAL FIREBASE CONFIG
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+            authDomain: "fureverhome-85730.firebaseapp.com",
+            projectId: "fureverhome-85730",
+            storageBucket: "fureverhome-85730.firebasestorage.app",
+            messagingSenderId: "710238936352",
+            appId: "1:710238936352:web:4485728fa66e83d8344b45"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const petsGrid = document.getElementById("petsGrid");
+
+        // Fetch pets from Firestore
+        const snapshot = await getDocs(collection(db, "pets"));
+
+        snapshot.forEach((doc) => {
+            const pet = doc.data();
+
+            const card = document.createElement("div");
+            card.className = "pet-card";
+
+            card.innerHTML = `
+                <div class="pet-image-container">
+                    <img src="assets/img/all_pets_img(1).jpg" class="pet-image" />
+                    <span class="availability-badge ${pet.status === "Available" ? "available" : "adopted"}">
+                        ${pet.status}
+                    </span>
+                </div>
+
+                <div class="pet-info">
+                    <h3 class="pet-name">${pet.name}</h3>
+                    <p class="pet-breed">${pet.breed}</p>
+                    <p class="pet-details">
+                        <span class="pet-type">Pet</span> •
+                        <span class="pet-age">${pet.age} years</span>
+                    </p>
+                </div>
+            `;
+
+            petsGrid.appendChild(card);
+        });
+    </script>
+
+</body>
+</html>
