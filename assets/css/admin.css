@@ -254,6 +254,21 @@ main p{
     color: gray;
 }
 
+/* Page header: align title and actions */
+.page-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 0 20px 8px 20px;
+}
+
+.page-title h1{margin:0}
+.page-title p{margin:4px 0 0 0;color:gray}
+
+.page-actions{display:flex;align-items:center;gap:12px}
+.page-actions .appointment{margin:0}
+
 .stats-overview {
     display: flex;
     gap: 20px;
@@ -1000,42 +1015,323 @@ main p{
 }
 
 /* Medical Page Styles */
-.critical-container{
-    width: 1200px;
-    height: 300px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 18px;
-    margin: 20px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    overflow: hidden;
-}
-.table-header{
+.appointment{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    padding: 13px;
+    border-radius:12px;
+    border:none;
+    background-color: #87cb70;
+    color: white;
+}
+
+.critical-container{
+    width: calc(100% - 30px);
+    background-color: white;
+    border-radius: 12px;
+    padding: 10px 15px 20px 10px;
+    margin: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);      
+}
+
+.table-header{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .table-header h2{
-    font-size: 15px;
+    font-size: 16px;
     margin: 0;
-    font-weight: 100;
-    margin-left: 30px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.table-header span{
-    font-size: 13px;
+.table-header h2 i{
+    color: #e85a5a;
+    background: #fff0f0;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.critical-count{
+    margin-left: auto;
+    background-color: #ff6b6b;
     color: white;
-    font-weight: 500;
-    background-color: red;
-    padding: 7px 15px;
+    padding: 6px 10px;
     border-radius: 10px;
+    font-weight: 700;
 }
 
-.critical-pets{
-    width: 1150px;
-    height: 80px;
-    background-color: rgb(194, 192, 192);
+.critical-list{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.critical-item{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: #fff6f6;
+    padding: 14px 18px;
     border-radius: 12px;
-    margin-top: 15px;
+    border-left: 6px solid #ff6b6b;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.critical-thumb img{
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.critical-content{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.critical-text{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.critical-name{
+    font-size:15px;
+    margin:0;
+    color:#333;
+    font-weight:400;
+}
+.critical-issue{
+    margin:0;
+    color:#e85a5a;
+    font-weight:300
+}
+.critical-due{
+    margin:0;
+    color:#999;
+    font-size:13px;
+}
+
+.critical-actions{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 0;
+}
+
+/* Upcoming Tasks and Recent Activity side-by-side */
+.tasks-activity-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px;
+}
+
+.upcoming-tasks-container,
+.recent-container{
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.task-header{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.task-header i{
+    color: #ff9800;
+    font-size: 24px;
+}
+
+.task-header h2{
+    font-size: 18px;
+    margin: 0;
+    color: #0A4b43;
+    font-weight: 600;
+}
+
+.task-list{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.task-item{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.task-thumb{
+    flex-shrink: 0;
+}
+
+.task-thumb img{
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.task-content{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.task-name{
+    font-size: 15px;
+    font-weight: 700;
+    color: #0A4b43;
+    margin: 0;
+}
+
+.task-description{
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+}
+
+.task-time{
+    font-size: 13px;
+    color: #ff9800;
+    font-weight: 600;
+    margin: 0;
+}
+.overdue{
+    background-color:#ff6b6b;
+    color:#fff;
+    border:none;
+    padding:8px 12px;
+    border-radius:12px;
+    font-size:13px;
+    margin: 0;
+}
+.overdue.small{
+    padding:6px 10px;
+    font-size:12px;
+    margin: 0;
+}
+
+.task-container{
+    width:500px;
+    height:450px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin-left: 20px;
+}
+.task-header h2{
+    font-size: 16px;
+    margin: 0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Recent Activity Section */
+.recent-container{
+    width: 450px;
+    height: 450px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.recent-header{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.recent-header i{
+    color: #6fb359;
+    font-size: 24px;
+}
+
+.recent-header h2{
+    font-size: 18px;
+    margin: 0;
+    color: #0A4b43;
+    font-weight: 600;
+}
+
+.recent-contents{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.recent-item{
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.recent-dot{
+    width: 12px;
+    height: 12px;
+    background-color: #6fb359;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.recent-text{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.recent-name{
+    font-size: 15px;
+    font-weight: 700;
+    color: #0A4b43;
+    margin: 0;
+}
+
+.recent-description{
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.recent-date{
+    font-size: 12px;
+    color: #999;
+    margin: 0;
+}
+
+.recent-check{
+    flex-shrink: 0;
+    color: #6fb359;
+    font-size: 20px;
+    margin-top: 2px;
 }

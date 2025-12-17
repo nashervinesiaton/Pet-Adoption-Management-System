@@ -53,21 +53,134 @@
         </nav>
 
         <main>
-             <h1>Medical Bay</h1>
-            <p>Monitor health status and medical schedules</p>
-
-            <div class ="critical-container">
-                <div class="table-header">
-                    <h2>Critical Alerts</h2>
-            <span>3</span>    
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Medical Bay</h1>
+                    <p>Monitor health status and medical schedules</p>
+                </div>
+                <div class="page-actions">
+                    <button class="appointment">+ Schedule Appointment</button>
+                </div>
             </div>
-            <div class ="critical-pets">
-                <div class = "critical-content">
-                    <img src="" class="critical-img" alt="Max"/>
-                    <h2 class="critical-name">Whiskers</h2>
-                    <h2 class="critival-status">Rabbies Vaccination Overdue</h2>
-                    <h3 class="critical-due">Due: 2024-12-10</h3>
-                    <button class ="overdue">3d Overdue</button>
+
+            <div class="critical-container">
+                <div class="table-header">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Critical Alerts</h2>
+                    <span class="critical-count">3</span>
+                </div>
+
+                <div class="critical-list">
+                    <div class="critical-item">
+                        <div class="critical-thumb"><img src="assets/img/all_pets_img(1).jpg" alt="Whiskers"/></div>
+                        <div class="critical-content">
+                            <div class="critical-text">
+                                <p class="critical-name">Whiskers</p>
+                                <p class="critical-issue">Rabies Vaccination Overdue</p>
+                                <p class="critical-due">Due: 2024-12-10</p>
+                            </div>
+                            <div class="critical-actions"><button class="overdue">3d overdue</button></div>
+                        </div>
+                    </div>
+
+                    <div class="critical-item">
+                        <div class="critical-thumb"><img src="assets/img/all_pets_img(1).jpg" alt="Rex"/></div>
+                        <div class="critical-content">
+                            <div class="critical-text">
+                                <p class="critical-name">Rex</p>
+                                <p class="critical-issue">Follow-up Examination Required</p>
+                                <p class="critical-due">Due: 2024-12-08</p>
+                            </div>
+                            <div class="critical-actions"><button class="overdue small">Due today</button></div>
+                        </div>
+                    </div>
+
+                    <div class="critical-item">
+                        <div class="critical-thumb"><img src="assets/img/all_pets_img(1).jpg" alt="Buddy"/></div>
+                        <div class="critical-content">
+                            <div class="critical-text">
+                                <p class="critical-name">Buddy</p>
+                                <p class="critical-issue">Medication Reminder</p>
+                                <p class="critical-due">Due: 2024-12-07</p>
+                            </div>
+                            <div class="critical-actions"><button class="overdue">1d overdue</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tasks-activity-wrapper">
+                <div class="upcoming-tasks-container">
+                    <div class="task-header">
+                        <i class="fas fa-clock"></i>
+                        <h2>Upcoming Tasks</h2>
+                    </div>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <div class="task-thumb">
+                                <img src="assets/img/all_pets_img(1).jpg" alt="Luna"/>
+                            </div>
+                            <div class="task-content">
+                                <p class="task-name">Luna</p>
+                                <p class="task-description">Annual Checkup</p>
+                                <p class="task-time">In 8 days</p>
+                            </div>
+                        </div>
+
+                        <div class="task-item">
+                            <div class="task-thumb">
+                                <img src="assets/img/all_pets_img(1).jpg" alt="Max"/>
+                            </div>
+                            <div class="task-content">
+                                <p class="task-name">Max</p>
+                                <p class="task-description">Spay/Neuter Surgery</p>
+                                <p class="task-time">In 13 days</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-container">
+                <div class="recent-header">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Recent Activity</h2>
+                </div>
+
+                <div class="recent-contents">
+                    <div class="recent-item">
+                        <div class="recent-dot"></div>
+                        <div class="recent-text">
+                            <p class="recent-name">Charlie</p>
+                            <p class="recent-description">Vaccination completed - DHPP</p>
+                            <p class="recent-date">2024-12-06</p>
+                        </div>
+                        <div class="recent-check">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <div class="recent-item">
+                        <div class="recent-dot"></div>
+                        <div class="recent-text">
+                            <p class="recent-name">Bella</p>
+                            <p class="recent-description">Health screening - General exam</p>
+                            <p class="recent-date">2024-12-05</p>
+                        </div>
+                        <div class="recent-check">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <div class="recent-item">
+                        <div class="recent-dot"></div>
+                        <div class="recent-text">
+                            <p class="recent-name">Rocky</p>
+                            <p class="recent-description">Deworming treatment - Panacur</p>
+                            <p class="recent-date">2024-12-04</p>
+                        </div>
+                        <div class="recent-check">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
             </div>
