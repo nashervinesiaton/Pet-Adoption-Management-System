@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FurEverHome - Dashboard</title>
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h1><a href="index.html">FurEverHome</a></h1>
+        <ul class="sidebar-contents">
+            <p>MAIN</p>
+            <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="inbox.html"><i class="fas fa-inbox"></i> Inbox</a></li>
+            <p>ANIMALS</p>
+            <li><a href="all_pets.html"><i class="fas fa-paw"></i> All Pets</a></li>
+            <li><a href="medical.html"><i class="fas fa-stethoscope"></i> Medical Bay</a></li>
+            <li><a href="behavioral.html" class="active"><i class="fas fa-brain"></i> Behavioral Logs</a></li>
+            <p>OPERATIONS</p>
+            <li><a href="adoptions.html"><i class="fas fa-heart"></i> Adoptions</a></li>
+            <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
+            <button class="add">+ Add New Pet</button>
+        </ul>
+    </aside>
+
+    <div class="main-container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search pets, applicants, or tag numbers..." />
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+
+                <div class="admin-profile">
+                    <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
+                    <div class="profile-info">
+                        <p class="profile-name">Admin User</p>
+                        <p class="profile-role">Administrator</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Behavioral Logs</h1>
+                    <p>Track temperament and behavioral assessments</p>
+                </div>
+                <div class="page-actions">
+                    <button class="appointment">+ New Assessment</button>
+                </div>
+            </div>
+
+            <div class="behavior-list">
+                <!-- Card 1 -->
+                <div class="behavior-card">
+                    <div class="behavior-thumb">
+                        <img src="assets/img/all_pets_img(1).jpg" alt="Luna" />
+                    </div>
+                    <div class="behavior-body">
+                        <div class="behavior-top">
+                            <div class="pet-meta">
+                                <p class="pet-name">Luna</p>
+                                <p class="pet-sub">Golden Retriever · Dog</p>
+                                <p class="pet-assessed">Last assessed: 2024-12-01</p>
+                            </div>
+                            <div class="status-badge excellent">Excellent</div>
+                        </div>
+
+                        <div class="behavior-stats">
+                            <div class="stat">
+                                <label>Friendliness</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:95%"></div></div>
+                                <span class="stat-value">95%</span>
+                            </div>
+
+                            <div class="stat">
+                                <label>Trainability</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:90%"></div></div>
+                                <span class="stat-value">90%</span>
+                            </div>
+
+                            <div class="stat">
+                                <label>Energy Level</label>
+                                <div class="progress-track"><div class="progress-fill orange" style="width:85%"></div></div>
+                                <span class="stat-value">85%</span>
+                            </div>
+                        </div>
+
+                        <div class="notes">Notes: Excellent with children. Very responsive to commands.</div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="behavior-card">
+                    <div class="behavior-thumb">
+                        <img src="assets/img/all_pets_img(1).jpg" alt="Rex" />
+                    </div>
+                    <div class="behavior-body">
+                        <div class="behavior-top">
+                            <div class="pet-meta">
+                                <p class="pet-name">Rex</p>
+                                <p class="pet-sub">German Shepherd · Dog</p>
+                                <p class="pet-assessed">Last assessed: 2024-11-28</p>
+                            </div>
+                            <div class="status-badge danger">Needs Attention</div>
+                        </div>
+
+                        <div class="behavior-stats">
+                            <div class="stat">
+                                <label>Friendliness</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:70%"></div></div>
+                                <span class="stat-value">70%</span>
+                            </div>
+
+                            <div class="stat">
+                                <label>Trainability</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:85%"></div></div>
+                                <span class="stat-value">85%</span>
+                            </div>
+
+                            <div class="stat">
+                                <label>Energy Level</label>
+                                <div class="progress-track"><div class="progress-fill orange" style="width:90%"></div></div>
+                                <span class="stat-value">90%</span>
+                            </div>
+                        </div>
+
+                        <div class="notes">Notes: Needs experienced handler. High energy level.</div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="behavior-card">
+                    <div class="behavior-thumb">
+                        <img src="assets/img/all_pets_img(1).jpg" alt="Max" />
+                    </div>
+                    <div class="behavior-body">
+                        <div class="behavior-top">
+                            <div class="pet-meta">
+                                <p class="pet-name">Max</p>
+                                <p class="pet-sub">Labrador Retriever · Dog</p>
+                                <p class="pet-assessed">Last assessed: 2024-12-05</p>
+                            </div>
+                            <div class="status-badge progress">In Progress</div>
+                        </div>
+
+                        <div class="behavior-stats">
+                            <div class="stat">
+                                <label>Friendliness</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:88%"></div></div>
+                                <span class="stat-value">88%</span>
+                            </div>
+
+                            <div class="stat">
+                                <label>Trainability</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:75%"></div></div>
+                                <span class="stat-value">75%</span>
+                            </div>
+
+                            <div class="stat">
+                                <label>Energy Level</label>
+                                <div class="progress-track"><div class="progress-fill orange" style="width:95%"></div></div>
+                                <span class="stat-value">95%</span>
+                            </div>
+                        </div>
+
+                        <div class="notes">Notes: Puppy energy. Still learning basic commands.</div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="behavior-card">
+                    <div class="behavior-thumb">
+                        <img src="assets/img/all_pets_img(1).jpg" alt="Whiskers" />
+                    </div>
+                    <div class="behavior-body">
+                        <div class="behavior-top">
+                            <div class="pet-meta">
+                                <p class="pet-name">Whiskers</p>
+                                <p class="pet-sub">Tabby · Cat</p>
+                                <p class="pet-assessed">Last assessed: 2024-11-25</p>
+                            </div>
+                            <div class="status-badge excellent">Excellent</div>
+                        </div>
+
+                        <div class="behavior-stats">
+                            <div class="stat">
+                                <label>Friendliness</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:80%"></div></div>
+                                <span class="stat-value">80%</span>
+                            </div>
+
+                            <div class="stat">
+                                <label>Trainability</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:60%"></div></div>
+                                <span class="stat-value">60%</span>
+                            </div>
+
+                            <div class="stat">
+                                <label>Energy Level</label>
+                                <div class="progress-track"><div class="progress-fill orange" style="width:70%"></div></div>
+                                <span class="stat-value">70%</span>
+                            </div>
+                        </div>
+
+                        <div class="notes">Notes: Independent but affectionate. Prefers quiet environments.</div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="behavior-card">
+                    <div class="behavior-thumb">
+                        <img src="assets/img/all_pets_img(1).jpg" alt="Buddy" />
+                    </div>
+                    <div class="behavior-body">
+                        <div class="behavior-top">
+                            <div class="pet-meta">
+                                <p class="pet-name">Buddy</p>
+                                <p class="pet-sub">Beagle · Dog</p>
+                                <p class="pet-assessed">Last assessed: 2024-12-03</p>
+                            </div>
+                            <div class="status-badge excellent">Excellent</div>
+                        </div>
+
+                        <div class="behavior-stats">
+                            <div class="stat">
+                                <label>Friendliness</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:92%"></div></div>
+                                <span class="stat-value">92%</span>
+                            </div>
+
+                            <div class="stat">
+                                <label>Trainability</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:80%"></div></div>
+                                <span class="stat-value">80%</span>
+                            </div>
+
+                            <div class="stat">
+                                <label>Energy Level</label>
+                                <div class="progress-track"><div class="progress-fill orange" style="width:75%"></div></div>
+                                <span class="stat-value">75%</span>
+                            </div>
+                        </div>
+
+                        <div class="notes">Notes: Great family dog. Loves everyone.</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

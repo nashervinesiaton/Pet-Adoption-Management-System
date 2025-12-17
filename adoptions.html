@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FurEverHome - Dashboard</title>
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h1><a href="index.html">FurEverHome</a></h1>
+        <ul class="sidebar-contents">
+            <p>MAIN</p>
+            <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="inbox.html"><i class="fas fa-inbox"></i> Inbox</a></li>
+            <p>ANIMALS</p>
+            <li><a href="all_pets.html"><i class="fas fa-paw"></i> All Pets</a></li>
+            <li><a href="medical.html"><i class="fas fa-stethoscope"></i> Medical Bay</a></li>
+            <li><a href="behavioral.html"><i class="fas fa-brain"></i> Behavioral Logs</a></li>
+            <p>OPERATIONS</p>
+            <li><a href="adoptions.html" class="active"><i class="fas fa-heart"></i> Adoptions</a></li>
+            <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
+            <button class="add">+ Add New Pet</button>
+        </ul>
+    </aside>
+
+    <div class="main-container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search pets, applicants, or tag numbers..." />
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+
+                <div class="admin-profile">
+                    <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
+                    <div class="profile-info">
+                        <p class="profile-name">Admin User</p>
+                        <p class="profile-role">Administrator</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Adoption Pipeline</h1>
+                    <p>Manage applications through the adoption process</p>
+                </div>
+                <div class="page-actions">
+                    <button class="appointment">+ New Application</button>
+                </div>
+            </div>
+
+            <div class="pipeline-board">
+                <!-- New Inquiry Column -->
+                <div class="pipeline-column">
+                    <div class="column-header">
+                        <span class="column-title">New Inquiry</span>
+                        <span class="column-count">3</span>
+                    </div>
+                    <div class="column-cards">
+                        <!-- Card 1 -->
+                        <div class="applicant-card">
+                            <p class="applicant-name">Sarah Johnson</p>
+                            <p class="applicant-pet">Pet: Rex</p>
+                            <p class="card-status">New</p>
+                            <span class="status-tag">First-time owner</span>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="applicant-card">
+                            <p class="applicant-name">Mike Chen</p>
+                            <p class="applicant-pet">Pet: Luna</p>
+                            <p class="card-status">Contacted</p>
+                            <span class="status-tag">Has yard</span>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="applicant-card">
+                            <p class="applicant-name">Emily Davis</p>
+                            <p class="applicant-pet">Pet: Max</p>
+                            <p class="card-status">New</p>
+                            <span class="status-tag">Experience with breed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interviewing Column -->
+                <div class="pipeline-column">
+                    <div class="column-header">
+                        <span class="column-title">Interviewing</span>
+                        <span class="column-count">2</span>
+                    </div>
+                    <div class="column-cards">
+                        <!-- Card 1 -->
+                        <div class="applicant-card">
+                            <p class="applicant-name">Tom Wilson</p>
+                            <p class="applicant-pet">Pet: Buddy</p>
+                            <p class="card-status">Phone scheduled</p>
+                            <span class="status-tag">Phone Interview Passed</span>
+                            <button class="card-action">Schedule Interview</button>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="applicant-card">
+                            <p class="applicant-name">Lisa Anderson</p>
+                            <p class="applicant-pet">Pet: Bella</p>
+                            <p class="card-status">In progress</p>
+                            <span class="status-tag">Reference check pending</span>
+                            <button class="card-action">Schedule Interview</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Home Visit Column -->
+                <div class="pipeline-column">
+                    <div class="column-header">
+                        <span class="column-title">Home Visit</span>
+                        <span class="column-count">1</span>
+                    </div>
+                    <div class="column-cards">
+                        <!-- Card 1 -->
+                        <div class="applicant-card">
+                            <p class="applicant-name">James Brown</p>
+                            <p class="applicant-pet">Pet: Charlie</p>
+                            <p class="card-status">Scheduled: Dec 10</p>
+                            <span class="status-tag">Home Visit Passed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trial Period Column -->
+                <div class="pipeline-column">
+                    <div class="column-header">
+                        <span class="column-title">Trial Period</span>
+                        <span class="column-count">2</span>
+                    </div>
+                    <div class="column-cards">
+                        <!-- Card 1 -->
+                        <div class="applicant-card">
+                            <p class="applicant-name">Anna Martinez</p>
+                            <p class="applicant-pet">Pet: Daisy</p>
+                            <p class="card-status">Day 5 of 14</p>
+                            <span class="status-tag">Going well</span>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="applicant-card">
+                            <p class="applicant-name">Robert Taylor</p>
+                            <p class="applicant-pet">Pet: Rocky</p>
+                            <p class="card-status">Day 12 of 14</p>
+                            <span class="status-tag">Final check scheduled</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Finalized Column -->
+                <div class="pipeline-column">
+                    <div class="column-header">
+                        <span class="column-title">Finalized</span>
+                        <span class="column-count">1</span>
+                    </div>
+                    <div class="column-cards">
+                        <!-- Card 1 -->
+                        <div class="applicant-card">
+                            <p class="applicant-name">David Lee</p>
+                            <p class="applicant-pet">Pet: Cooper</p>
+                            <p class="card-status">Completed</p>
+                            <span class="status-tag">Success</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

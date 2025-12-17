@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FurEverHome - Foster Network</title>
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h1><a href="index.html">FurEverHome</a></h1>
+        <ul class="sidebar-contents">
+            <p>MAIN</p>
+            <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="inbox.html"><i class="fas fa-inbox"></i> Inbox</a></li>
+            <p>ANIMALS</p>
+            <li><a href="all_pets.html"><i class="fas fa-paw"></i> All Pets</a></li>
+            <li><a href="medical.html"><i class="fas fa-stethoscope"></i> Medical Bay</a></li>
+            <li><a href="behavioral.html"><i class="fas fa-brain"></i> Behavioral Logs</a></li>
+            <p>OPERATIONS</p>
+            <li><a href="adoptions.html"><i class="fas fa-heart"></i> Adoptions</a></li>
+            <li><a href="foster.html" class="active"><i class="fas fa-users"></i> Foster Network</a></li>
+            <button class="add">+ Add New Pet</button>
+        </ul>
+    </aside>
+
+    <div class="main-container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search pets, applicants, or tag numbers..." />
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+
+                <div class="admin-profile">
+                    <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
+                    <div class="profile-info">
+                        <p class="profile-name">Admin User</p>
+                        <p class="profile-role">Administrator</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Foster Network</h1>
+                    <p>Manage foster homes and capacity</p>
+                </div>
+                <div class="page-actions">
+                    <button class="appointment">+ Add Foster Parent</button>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-btn">
+                    <i class="fas fa-filter"></i>
+                </button>
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Has Vacancy</button>
+                <button class="filter-btn">Currently Active</button>
+                <button class="filter-btn">Special Needs Experienced</button>
+            </div>
+
+            <!-- Foster Network Grid -->
+            <div class="foster-grid">
+                <!-- Card 1 -->
+                <div class="foster-card">
+                    <div class="foster-header">
+                        <h3>Jennifer Martinez <i class="fas fa-check-circle" style="color:#6fb359"></i></h3>
+                        <span class="status-badge open">Open / Has Space</span>
+                    </div>
+                    <div class="capacity-info">
+                        <p>Capacity</p>
+                        <p class="capacity-count">2/3 Slots Filled</p>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 66%"></div>
+                    </div>
+                    <div class="current-guests">
+                        <p>Current Guests:</p>
+                        <div class="guest-avatars">
+                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
+                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
+                        </div>
+                        <div class="guest-labels">
+                            <span>Puppies</span>
+                            <span>Large Dogs</span>
+                        </div>
+                    </div>
+                    <button class="assign-btn">Assign Pet</button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="foster-card">
+                    <div class="foster-header">
+                        <h3>Robert Chen <i class="fas fa-check-circle" style="color:#6fb359"></i></h3>
+                        <span class="status-badge open">Open / Has Space</span>
+                    </div>
+                    <div class="capacity-info">
+                        <p>Capacity</p>
+                        <p class="capacity-count">1/2 Slots Filled</p>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 50%"></div>
+                    </div>
+                    <div class="current-guests">
+                        <p>Current Guests:</p>
+                        <div class="guest-avatars">
+                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
+                        </div>
+                        <div class="guest-labels">
+                            <span>Cats</span>
+                            <span>Special Needs</span>
+                        </div>
+                    </div>
+                    <button class="assign-btn">Assign Pet</button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="foster-card">
+                    <div class="foster-header">
+                        <h3>Sarah Williams <i class="fas fa-check-circle" style="color:#6fb359"></i></h3>
+                        <span class="status-badge full">Full / No Capacity</span>
+                    </div>
+                    <div class="capacity-info">
+                        <p>Capacity</p>
+                        <p class="capacity-count">4/4 Slots Filled</p>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                    <div class="current-guests">
+                        <p>Current Guests:</p>
+                        <div class="guest-avatars">
+                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
+                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
+                        </div>
+                        <div class="guest-labels">
+                            <span>Multiple Pets</span>
+                            <span>Large Dogs</span>
+                        </div>
+                    </div>
+                    <button class="assign-btn disabled">Not Available</button>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="foster-card">
+                    <div class="foster-header">
+                        <h3>Michael Brown <i class="fas fa-check-circle" style="color:#6fb359"></i></h3>
+                        <span class="status-badge inactive">Inactive</span>
+                    </div>
+                    <div class="capacity-info">
+                        <p>Capacity</p>
+                        <p class="capacity-count">0/2 Slots Filled</p>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="current-guests">
+                        <p>Current Guests:</p>
+                        <div class="guest-labels">
+                            <span>Small Dogs</span>
+                            <span>Seniors</span>
+                        </div>
+                    </div>
+                    <button class="assign-btn disabled">Not Available</button>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="foster-card">
+                    <div class="foster-header">
+                        <h3>Lisa Anderson <i class="fas fa-check-circle" style="color:#6fb359"></i></h3>
+                        <span class="status-badge open">Open / Has Space</span>
+                    </div>
+                    <div class="capacity-info">
+                        <p>Capacity</p>
+                        <p class="capacity-count">0/3 Slots Filled</p>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="current-guests">
+                        <p>Current Guests:</p>
+                        <div class="guest-labels">
+                            <span>Kittens</span>
+                            <span>Medical Care</span>
+                        </div>
+                    </div>
+                    <button class="assign-btn">Assign Pet</button>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="foster-card">
+                    <div class="foster-header">
+                        <h3>David Thompson</h3>
+                        <span class="status-badge open">Open / Has Space</span>
+                    </div>
+                    <div class="capacity-info">
+                        <p>Capacity</p>
+                        <p class="capacity-count">1/2 Slots Filled</p>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 50%"></div>
+                    </div>
+                    <div class="current-guests">
+                        <p>Current Guests:</p>
+                        <div class="guest-avatars">
+                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
+                        </div>
+                        <div class="guest-labels">
+                            <span>First-time Foster</span>
+                        </div>
+                    </div>
+                    <button class="assign-btn">Assign Pet</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const fosterCards = document.querySelectorAll('.foster-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                const filterType = this.textContent.trim();
+
+                // Show/hide cards based on filter
+                fosterCards.forEach(card => {
+                    if (filterType === 'All' || filterType === '') {
+                        card.style.display = 'block';
+                    } else if (filterType === 'Has Vacancy') {
+                        const statusBadge = card.querySelector('.status-badge');
+                        card.style.display = statusBadge && statusBadge.textContent.includes('Open') ? 'block' : 'none';
+                    } else if (filterType === 'Currently Active') {
+                        const statusBadge = card.querySelector('.status-badge');
+                        card.style.display = statusBadge && !statusBadge.textContent.includes('Inactive') ? 'block' : 'none';
+                    } else if (filterType === 'Special Needs Experienced') {
+                        const labels = card.querySelector('.guest-labels');
+                        card.style.display = labels && labels.textContent.includes('Special') ? 'block' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
