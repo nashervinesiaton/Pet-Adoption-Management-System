@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Firebase Test</title>
+</head>
+<body>
+  <h2>Firebase is Working</h2>
+  <ul id="petList"></ul>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+  apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+  authDomain: "fureverhome-85730.firebaseapp.com",
+  projectId: "fureverhome-85730",
+  storageBucket: "fureverhome-85730.firebasestorage.app",
+  messagingSenderId: "710238936352",
+  appId: "1:710238936352:web:4485728fa66e83d8344b45"
+};
+
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const list = document.getElementById("petList");
+
+    const snapshot = await getDocs(collection(db, "pets"));
+    snapshot.forEach((doc) => {
+      const li = document.createElement("li");
+      li.textContent = doc.data().name + " - " + doc.data().breed;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>
