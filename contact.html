@@ -7,52 +7,85 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        .contact-container {
-            max-width: 800px;
-            margin: 100px auto;
-            padding: 40px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+        
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #0d3d33; 
+            font-family: 'Inter', sans-serif;
         }
 
-        .contact-info h2 { color: #1a1a1a; margin-bottom: 20px; font-size: 2rem; }
+        header {
+            width: 100%;
+            background: white; 
+        }
+
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .contact-container {
+            max-width: 850px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden; 
+        }
+
+        .contact-info {
+            padding: 50px;
+            background: #fdfdfd;
+            border-right: 1px solid #f0f0f0;
+        }
+
+        .contact-form {
+            padding: 50px;
+        }
+
+        .contact-info h2 { color: #1a1a1a; margin-top: 0; margin-bottom: 20px; font-size: 2rem; }
         .contact-info p { color: #666; line-height: 1.6; margin-bottom: 30px; }
         
         .info-item { display: flex; align-items: center; margin-bottom: 20px; color: #444; }
-        .info-item i { margin-right: 15px; color: #8b5cf6; font-size: 1.2rem; }
+        .info-item i { margin-right: 15px; color: #8b5cf6; width: 20px; text-align: center; }
 
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             margin-bottom: 15px;
             border: 1px solid #e1e1e1;
-            border-radius: 8px;
+            border-radius: 10px;
             outline: none;
-            transition: 0.3s;
+            box-sizing: border-box; 
         }
-
-        .contact-form input:focus, .contact-form textarea:focus { border-color: #8b5cf6; }
 
         .btn-send {
             background: #8b5cf6;
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
+            padding: 16px;
+            border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
             transition: 0.3s;
+            font-size: 1rem;
         }
 
-        .btn-send:hover { background: #7c3aed; }
+        .btn-send:hover { background: #7c3aed; transform: translateY(-2px); }
 
         @media (max-width: 768px) {
-            .contact-container { grid-template-columns: 1fr; margin: 50px 20px; }
+            .contact-container { grid-template-columns: 1fr; }
+            .contact-info, .contact-form { padding: 30px; }
         }
     </style>
 </head>
@@ -69,25 +102,26 @@
         </nav>
     </header>
 
-    <div class="contact-container">
-        <div class="contact-info">
+    <div class="main-wrapper">
+        <div class="contact-container">
             <div class="contact-info">
-            <h2>Visit Us in Jaro</h2>
-            <p>Come meet your future best friend! Our center is located just a short walk from the iconic Jaro Cathedral.</p>
-    
-            <div class="info-item"><i class="fas fa-map-marker-alt"></i> E. Lopez St., Jaro, Iloilo City</div>
-            <div class="info-item"><i class="fas fa-phone"></i> +63 (033) 321-4567</div>
-            <div class="info-item"><i class="fas fa-envelope"></i> help@fureverhome-iloilo.com</div>
-            <div class="info-item"><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 5:00 PM</div>
-        </div>
+                <h2>Visit Us in Jaro</h2>
+                <p>Come meet your future best friend! Our center is located just a short walk from the iconic Jaro Cathedral.</p>
+                
+                <div class="info-item"><i class="fas fa-map-marker-alt"></i> E. Lopez St., Jaro, Iloilo City</div>
+                <div class="info-item"><i class="fas fa-phone"></i> +63 (033) 321-4567</div>
+                <div class="info-item"><i class="fas fa-envelope"></i> help@fureverhome-iloilo.com</div>
+                <div class="info-item"><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 5:00 PM</div>
+            </div>
 
-        <div class="contact-form">
-            <form id="contactForm">
-                <input type="text" id="name" placeholder="Full Name" required>
-                <input type="email" id="email" placeholder="Email Address" required>
-                <textarea id="message" rows="5" placeholder="Your Message..." required></textarea>
-                <button type="submit" class="btn-send" id="submitBtn">Send Message</button>
-            </form>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <input type="text" id="name" placeholder="Full Name" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <textarea id="message" rows="5" placeholder="Your Message..." required></textarea>
+                    <button type="submit" class="btn-send" id="submitBtn">Send Message</button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -112,7 +146,6 @@
 
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
@@ -120,18 +153,15 @@
             try {
                 submitBtn.innerText = "Sending...";
                 submitBtn.disabled = true;
-              
                 await addDoc(collection(db, "messages"), {
                     name: name,
                     email: email,
                     text: message,
                     timestamp: serverTimestamp()
                 });
-
                 alert("Thank you! Your message has been sent.");
                 contactForm.reset();
             } catch (error) {
-                console.error("Error:", error);
                 alert("Something went wrong. Please try again.");
             } finally {
                 submitBtn.innerText = "Send Message";
