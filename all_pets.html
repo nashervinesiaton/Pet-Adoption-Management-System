@@ -8,20 +8,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     
     <style>
-        /* --- NEW CSS TO FIX IMAGE SIZES --- */
+       
         .pet-card {
             background: white;
             border-radius: 12px;
-            overflow: hidden; /* Keeps image inside rounded corners */
+            overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
-            height: 100%; /* Makes all cards same height */
+            height: 100%;
+            position: relative; 
         }
 
         .pet-image-container {
             width: 100%;
-            height: 250px; /* <--- THIS FORCES EXACT HEIGHT */
+            height: 250px;
             background-color: #f3f4f6;
             position: relative;
         }
@@ -29,10 +30,11 @@
         .pet-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* <--- THIS CROPS THE IMAGE NEATLY */
+            object-fit: cover;
             object-position: center;
         }
 
+        
         .availability-badge {
             position: absolute;
             top: 10px;
@@ -43,11 +45,37 @@
             font-size: 0.8rem;
             font-weight: bold;
             text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
-        .availability-badge.available { background-color: #10b981; } /* Green */
-        .availability-badge.adopted { background-color: #ef4444; }   /* Red */
-        .availability-badge.foster { background-color: #f59e0b; }    /* Orange */
+        .availability-badge.available { background-color: #10b981; }
+        .availability-badge.adopted { background-color: #ef4444; }
+        .availability-badge.foster { background-color: #f59e0b; }
+
+        .btn-delete {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 32px;
+            height: 32px;
+            background-color: white;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: #ef4444;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .btn-delete:hover {
+            background-color: #ef4444;
+            color: white;
+            transform: scale(1.1); 
+        }
     </style>
 </head>
 
@@ -92,14 +120,15 @@
 
         <main>
             <h1>All Pets</h1>
-            <p>Animals loaded from Firebase</p>
+            <p>Manage your animals</p>
             <div class="pets-grid" id="petsGrid"></div>
         </main>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+       
+        import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
@@ -114,29 +143,45 @@
         const db = getFirestore(app);
         const petsGrid = document.getElementById("petsGrid");
 
+        window.deletePet = async (petId) => {
+            
+            if(confirm("Are you sure you want to delete this pet? This cannot be undone.")) {
+                try {
+                    
+                    await deleteDoc(doc(db, "pets", petId));
+                    alert("Pet deleted successfully!");
+                    
+                    location.reload(); 
+                } catch (error) {
+                    console.error("Error deleting pet:", error);
+                    alert("Something went wrong deleting the pet.");
+                }
+            }
+        };
+
+
         const snapshot = await getDocs(collection(db, "pets"));
 
-        snapshot.forEach((doc) => {
-            const pet = doc.data();
+        snapshot.forEach((documentSnapshot) => {
+            const pet = documentSnapshot.data();
+            const petId = documentSnapshot.id; 
+
             const card = document.createElement("div");
             card.className = "pet-card";
 
-            // If image is missing, show a placeholder
-            // If image is broken (old pets), we fallback to placeholder in the onerror event
-            let imageSrc = pet.imageUrl ? pet.imageUrl : "https://via.placeholder.com/300?text=No+Image";
-
-            // Determine badge class
+            let imageSrc = pet.imageUrl ? pet.imageUrl : "assets/img/default-dog.jpg";
             let badgeClass = "available";
             if(pet.status === "Adopted") badgeClass = "adopted";
             if(pet.status === "Foster Care") badgeClass = "foster";
 
             card.innerHTML = `
                 <div class="pet-image-container">
-                    <img src="${imageSrc}" 
-                         class="pet-image" 
-                         alt="${pet.name}" 
-                         onerror="this.src='assets/img/default-dog.jpg'" /> 
-                         
+                    <button class="btn-delete" onclick="deletePet('${petId}')" title="Delete Pet">
+                        <i class="fas fa-trash"></i>
+                    </button>
+
+                    <img src="${imageSrc}" class="pet-image" alt="${pet.name}" onerror="this.src='assets/img/default-dog.jpg'" />
+                    
                     <span class="availability-badge ${badgeClass}">
                         ${pet.status}
                     </span>
