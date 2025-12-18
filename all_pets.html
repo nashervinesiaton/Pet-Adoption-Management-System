@@ -4,16 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FurEverHome - All Pets</title>
-
     <link rel="stylesheet" href="assets/css/admin.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    
+    <style>
+        /* --- NEW CSS TO FIX IMAGE SIZES --- */
+        .pet-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden; /* Keeps image inside rounded corners */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Makes all cards same height */
+        }
+
+        .pet-image-container {
+            width: 100%;
+            height: 250px; /* <--- THIS FORCES EXACT HEIGHT */
+            background-color: #f3f4f6;
+            position: relative;
+        }
+
+        .pet-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* <--- THIS CROPS THE IMAGE NEATLY */
+            object-position: center;
+        }
+
+        .availability-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .availability-badge.available { background-color: #10b981; } /* Green */
+        .availability-badge.adopted { background-color: #ef4444; }   /* Red */
+        .availability-badge.foster { background-color: #f59e0b; }    /* Orange */
+    </style>
 </head>
 
 <body>
 
     <aside class="sidebar">
         <h1><a href="index.html">FurEverHome</a></h1>
-        
         <ul class="sidebar-contents">
             <p>MAIN</p>
             <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
@@ -27,12 +68,10 @@
             <li><a href="adoptions.html"><i class="fas fa-heart"></i> Adoptions</a></li>
             <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
         </ul>
-        
         <button class="add" onclick="window.location.href='add_pet.html'">+ Add New Pet</button>
     </aside>
 
     <div class="main-container">
-
         <nav class="navbar">
             <div class="navbar-left">
                 <div class="search-bar">
@@ -40,20 +79,13 @@
                     <input type="text" placeholder="Search pets..." />
                 </div>
             </div>
-
             <div class="navbar-right">
-                <div class="notification-icon">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </div>
-
+                <div class="notification-icon"><i class="fas fa-bell"></i></div>
                 <div class="admin-profile">
                     <img src="assets/img/admin-profile.jpg" class="profile-img" />
                     <div class="profile-info">
                         <p class="profile-name">Admin User</p>
-                        <p class="profile-role">Administrator</p>
                     </div>
-                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </nav>
@@ -61,7 +93,6 @@
         <main>
             <h1>All Pets</h1>
             <p>Animals loaded from Firebase</p>
-
             <div class="pets-grid" id="petsGrid"></div>
         </main>
     </div>
@@ -70,37 +101,43 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // ✅ YOUR REAL FIREBASE CONFIG
         const firebaseConfig = {
             apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
             authDomain: "fureverhome-85730.firebaseapp.com",
             projectId: "fureverhome-85730",
-            storageBucket: "fureverhome-85730.firebasestorage.app",
+            storageBucket: "fureverhome-85730.appspot.com",
             messagingSenderId: "710238936352",
             appId: "1:710238936352:web:4485728fa66e83d8344b45"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-
         const petsGrid = document.getElementById("petsGrid");
 
-        // Fetch pets from Firestore
         const snapshot = await getDocs(collection(db, "pets"));
 
         snapshot.forEach((doc) => {
             const pet = doc.data();
-
             const card = document.createElement("div");
             card.className = "pet-card";
 
-            // Note: We are using a placeholder image for now because
-            // we haven't built the image uploader yet.
+            // If image is missing, show a placeholder
+            // If image is broken (old pets), we fallback to placeholder in the onerror event
+            let imageSrc = pet.imageUrl ? pet.imageUrl : "https://via.placeholder.com/300?text=No+Image";
+
+            // Determine badge class
+            let badgeClass = "available";
+            if(pet.status === "Adopted") badgeClass = "adopted";
+            if(pet.status === "Foster Care") badgeClass = "foster";
+
             card.innerHTML = `
                 <div class="pet-image-container">
-                    <img src="assets/img/all_pets_img(1).jpg" class="pet-image" />
-                    <span class="availability-badge ${pet.status === "Available" ? "available" : "adopted"}">
+                    <img src="${imageSrc}" 
+                         class="pet-image" 
+                         alt="${pet.name}" 
+                         onerror="this.src='assets/img/default-dog.jpg'" /> 
+                         
+                    <span class="availability-badge ${badgeClass}">
                         ${pet.status}
                     </span>
                 </div>
@@ -114,7 +151,6 @@
                     </p>
                 </div>
             `;
-
             petsGrid.appendChild(card);
         });
     </script>

@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Pet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* --- CSS STYLES (THE DESIGN) --- */
+        /* --- CSS STYLES --- */
         * {
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -24,7 +25,7 @@
         .card {
             background-color: white;
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             padding: 32px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
@@ -60,6 +61,51 @@
         .btn-close:hover {
             background-color: #f3f4f6;
             color: #374151;
+        }
+
+        /* --- IMAGE UPLOADER STYLES --- */
+        .image-upload-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background-color: #f9fafb;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-preview:hover {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+
+        .image-preview i {
+            font-size: 2rem;
+            color: #9ca3af;
+            margin-bottom: 8px;
+        }
+
+        .image-preview span {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        #petImage {
+            display: none;
         }
 
         .form-group {
@@ -114,7 +160,7 @@
     <div class="card">
         <div class="card-header">
             <h2 class="card-title">Add New Pet</h2>
-            <button class="btn-close" onclick="window.location.href='index.html'" type="button">
+            <button class="btn-close" onclick="window.location.href='all_pets.html'" type="button">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -123,6 +169,14 @@
         </div>
       
         <form id="addPetForm">
+            <div class="image-upload-container">
+                <div class="image-preview" id="imagePreview">
+                    <i class="fas fa-camera"></i>
+                    <span>Click to upload photo</span>
+                </div>
+                <input type="file" id="petImage" accept="image/*">
+            </div>
+
             <div class="form-group">
                 <label for="petName">Pet Name</label>
                 <input type="text" id="petName" required placeholder="e.g. Buddy">
@@ -152,11 +206,10 @@
     </div>
 
     <script type="module">
-        // Import Firebase functions
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // YOUR CONFIGURATION (Copied from your screenshot)
+        // YOUR CONFIGURATION
         const firebaseConfig = {
             apiKey: "AIzaSyD2xDd4HpSRaUBlUNLG4WxqB-mXFYKVHF",
             authDomain: "fureverhome-85730.firebaseapp.com",
@@ -166,15 +219,47 @@
             appId: "1:710238936352:web:4485728fa66e83d8344b45"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Handle Form Submission
+        // --- IMAGE HANDLING (BASE64 STRATEGY) ---
+        const imageInput = document.getElementById('petImage');
+        const imagePreview = document.getElementById('imagePreview');
+        let base64String = ""; // This holds the image as text
+
+        // Open file selector
+        imagePreview.addEventListener('click', () => {
+            imageInput.click();
+        });
+
+        // When a file is selected
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                // ⚠️ SAFETY CHECK: Limit file size to 800KB
+                // Firestore documents have a 1MB max limit.
+                if (file.size > 800 * 1024) {
+                    alert("This image is too big! Please choose a smaller image (under 800KB) or take a screenshot of it.");
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    base64String = e.target.result; // This converts image to text
+                    
+                    // Show preview
+                    imagePreview.style.backgroundImage = `url(${base64String})`;
+                    imagePreview.innerHTML = ''; // Hide the icon/text
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // --- FORM SUBMISSION ---
         const addPetForm = document.getElementById('addPetForm');
 
         addPetForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Stop page reload
+            e.preventDefault(); 
 
             // Get values
             const name = document.getElementById('petName').value;
@@ -183,33 +268,42 @@
             const status = document.getElementById('petStatus').value;
             const submitBtn = document.querySelector('.btn-save');
 
+            // Ensure image is selected
+            if (!base64String) {
+                alert("Please click the box to add a photo!");
+                return;
+            }
+
             try {
                 // Show loading state
                 submitBtn.textContent = "Saving...";
                 submitBtn.disabled = true;
 
-                // Save to Firestore
+                // Save to Firestore (Image is now text inside the 'imageUrl' field)
                 await addDoc(collection(db, "pets"), {
                     name: name,
                     breed: breed,
                     age: Number(age),
                     status: status,
+                    imageUrl: base64String, // <--- Saving the image data directly
                     createdAt: serverTimestamp()
                 });
 
                 alert("Pet saved successfully!");
                 
-                // Clear form
+                // Reset everything
                 addPetForm.reset();
+                imagePreview.style.backgroundImage = 'none';
+                imagePreview.innerHTML = '<i class="fas fa-camera"></i><span>Click to upload photo</span>';
+                base64String = "";
                 
-                // Optional: Redirect to list
+                // Redirect to list
                 window.location.href = 'all_pets.html';
 
             } catch (error) {
                 console.error("Error adding document: ", error);
                 alert("Error saving pet: " + error.message);
             } finally {
-                // Reset button state
                 submitBtn.textContent = "Save Pet";
                 submitBtn.disabled = false;
             }
