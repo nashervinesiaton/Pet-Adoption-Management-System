@@ -15,7 +15,7 @@
         input, select, textarea { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; }
         
         .btn-group { display: flex; gap: 10px; margin-top: 30px; }
-        .save-btn { flex: 1; background: #ef4444; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; } /* Red for Medical */
+        .save-btn { flex: 1; background: #ef4444; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; }
         .save-btn:hover { background: #dc2626; }
         .cancel-btn { flex: 1; background: #9ca3af; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center;}
     </style>
@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <label>Details / Notes</label>
-                <textarea id="notes" rows="3" placeholder="e.g. Rabies shot given, next due in 1 year"></textarea>
+                <textarea id="notes" rows="3" placeholder="e.g. Rabies shot given"></textarea>
             </div>
 
             <div class="btn-group">
@@ -77,14 +77,13 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        // 1. Populate Dropdown with Real Pets
         async function loadPetsDropdown() {
             const petSelect = document.getElementById('petSelect');
             petSelect.innerHTML = '<option value="">Select a Pet...</option>';
-
             const snapshot = await getDocs(collection(db, "pets"));
             snapshot.forEach(doc => {
                 const pet = doc.data();
-                // We value store the ID, but show the Name
                 const option = document.createElement("option");
                 option.value = doc.id; 
                 option.text = pet.name + " (" + pet.breed + ")";
@@ -93,35 +92,28 @@
         }
         loadPetsDropdown();
 
+        // 2. Save Data to Firebase
         document.getElementById('medicalForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-
-            const petId = document.getElementById('petSelect').value;
-            const petNameText = document.getElementById('petSelect').options[document.getElementById('petSelect').selectedIndex].text;
-            
-            // Clean up the name (remove the breed part for display)
-            const cleanName = petNameText.split(' (')[0];
+            const petSelect = document.getElementById('petSelect');
+            const petNameText = petSelect.options[petSelect.selectedIndex].text.split(' (')[0];
 
             try {
-              
                 await addDoc(collection(db, "medical_logs"), {
-                    petId: petId,
-                    petName: cleanName,
+                    petId: petSelect.value,
+                    petName: petNameText,
                     type: document.getElementById('recordType').value,
                     date: document.getElementById('date').value,
                     notes: document.getElementById('notes').value,
-                    createdAt: new Date() 
+                    createdAt: new Date().toISOString()
                 });
-
                 alert("Medical record saved!");
                 window.location.href = "medical.html";
-
             } catch (error) {
                 console.error("Error:", error);
                 alert("Could not save record.");
             }
         });
     </script>
-
 </body>
 </html>
