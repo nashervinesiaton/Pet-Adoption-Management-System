@@ -6,6 +6,51 @@
     <title>FurEverHome - Foster Network</title>
     <link rel="stylesheet" href="assets/css/admin.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <style>
+        /* Specific styles for the foster cards */
+        .foster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .foster-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .foster-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px; }
+        .foster-name { font-weight: bold; font-size: 1.2rem; color: #1f2937; }
+        
+        .status-badge { padding: 4px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; }
+        .status-open { background: #d1fae5; color: #059669; }
+        .status-full { background: #fee2e2; color: #dc2626; }
+        .status-inactive { background: #f3f4f6; color: #6b7280; }
+
+        .capacity-info { display: flex; justify-content: space-between; font-size: 0.9rem; color: #6b7280; margin-bottom: 5px; }
+        .progress-track { background: #e5e7eb; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 15px; }
+        .progress-fill { height: 100%; background: #10b981; transition: width 0.3s ease; }
+        .progress-fill.full { background: #ef4444; }
+
+        .current-guests { margin-bottom: 15px; }
+        .current-guests p { font-size: 0.8rem; color: #9ca3af; text-transform: uppercase; font-weight: bold; margin-bottom: 8px; }
+        .guest-labels { display: flex; gap: 5px; flex-wrap: wrap; }
+        .guest-labels span { background: #f3f4f6; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; color: #4b5563; }
+        .guest-labels span.pet-name { background: #e0f2fe; color: #0369a1; font-weight: bold; }
+
+        .btn-assign { 
+            width: 100%; background: #8b5cf6; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s;
+        }
+        .btn-assign:hover { background: #7c3aed; }
+        
+        .btn-release { background: white; border: 1px solid #ef4444; color: #ef4444; }
+        .btn-release:hover { background: #ef4444; color: white; }
+    </style>
 </head>
 
 <body>
@@ -33,23 +78,16 @@
             <div class="navbar-left">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search pets, applicants, or tag numbers..." />
+                    <input type="text" placeholder="Search volunteers..." />
                 </div>
             </div>
-
             <div class="navbar-right">
-                <div class="notification-icon">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </div>
-
+                <div class="notification-icon"><i class="fas fa-bell"></i></div>
                 <div class="admin-profile">
-                    <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
+                    <img src="assets/img/admin-profile.jpg" class="profile-img" />
                     <div class="profile-info">
                         <p class="profile-name">Admin User</p>
-                        <p class="profile-role">Administrator</p>
                     </div>
-                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </nav>
@@ -61,188 +99,143 @@
                     <p>Manage foster homes and capacity</p>
                 </div>
                 <div class="page-actions">
-                    <button class="appointment">+ Add Foster Parent</button>
+                    <button class="appointment" onclick="window.location.href='add_foster.html'" style="background: #8b5cf6;">+ Add Foster Parent</button>
                 </div>
             </div>
 
             <div class="filter-tabs">
-                <button class="filter-btn">
-                    <i class="fas fa-filter"></i>
-                </button>
                 <button class="filter-btn active">All</button>
                 <button class="filter-btn">Has Vacancy</button>
                 <button class="filter-btn">Currently Active</button>
-                <button class="filter-btn">Special Needs Experienced</button>
             </div>
 
-            <div class="foster-grid">
-                <div class="foster-card">
-                    <div class="foster-header">
-                        <h3>Jennifer Martinez <i class="fas fa-check-circle" style="color:#6fb359"></i></h3>
-                        <span class="status-badge open">Open / Has Space</span>
-                    </div>
-                    <div class="capacity-info">
-                        <p>Capacity</p>
-                        <p class="capacity-count">2/3 Slots Filled</p>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 66%"></div>
-                    </div>
-                    <div class="current-guests">
-                        <p>Current Guests:</p>
-                        <div class="guest-avatars">
-                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
-                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
-                        </div>
-                        <div class="guest-labels">
-                            <span>Puppies</span>
-                            <span>Large Dogs</span>
-                        </div>
-                    </div>
-                    <button class="assign-btn">Assign Pet</button>
-                </div>
-
-                <div class="foster-card">
-                    <div class="foster-header">
-                        <h3>Robert Chen <i class="fas fa-check-circle" style="color:#6fb359"></i></h3>
-                        <span class="status-badge open">Open / Has Space</span>
-                    </div>
-                    <div class="capacity-info">
-                        <p>Capacity</p>
-                        <p class="capacity-count">1/2 Slots Filled</p>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 50%"></div>
-                    </div>
-                    <div class="current-guests">
-                        <p>Current Guests:</p>
-                        <div class="guest-avatars">
-                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
-                        </div>
-                        <div class="guest-labels">
-                            <span>Cats</span>
-                            <span>Special Needs</span>
-                        </div>
-                    </div>
-                    <button class="assign-btn">Assign Pet</button>
-                </div>
-
-                <div class="foster-card">
-                    <div class="foster-header">
-                        <h3>Sarah Williams <i class="fas fa-check-circle" style="color:#6fb359"></i></h3>
-                        <span class="status-badge full">Full / No Capacity</span>
-                    </div>
-                    <div class="capacity-info">
-                        <p>Capacity</p>
-                        <p class="capacity-count">4/4 Slots Filled</p>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 100%"></div>
-                    </div>
-                    <div class="current-guests">
-                        <p>Current Guests:</p>
-                        <div class="guest-avatars">
-                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
-                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
-                        </div>
-                        <div class="guest-labels">
-                            <span>Multiple Pets</span>
-                            <span>Large Dogs</span>
-                        </div>
-                    </div>
-                    <button class="assign-btn disabled">Not Available</button>
-                </div>
-
-                <div class="foster-card">
-                    <div class="foster-header">
-                        <h3>Michael Brown <i class="fas fa-check-circle" style="color:#6fb359"></i></h3>
-                        <span class="status-badge inactive">Inactive</span>
-                    </div>
-                    <div class="capacity-info">
-                        <p>Capacity</p>
-                        <p class="capacity-count">0/2 Slots Filled</p>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 0%"></div>
-                    </div>
-                    <div class="current-guests">
-                        <p>Current Guests:</p>
-                        <div class="guest-labels">
-                            <span>Small Dogs</span>
-                            <span>Seniors</span>
-                        </div>
-                    </div>
-                    <button class="assign-btn disabled">Not Available</button>
-                </div>
-
-                <div class="foster-card">
-                    <div class="foster-header">
-                        <h3>Lisa Anderson <i class="fas fa-check-circle" style="color:#6fb359"></i></h3>
-                        <span class="status-badge open">Open / Has Space</span>
-                    </div>
-                    <div class="capacity-info">
-                        <p>Capacity</p>
-                        <p class="capacity-count">0/3 Slots Filled</p>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 0%"></div>
-                    </div>
-                    <div class="current-guests">
-                        <p>Current Guests:</p>
-                        <div class="guest-labels">
-                            <span>Kittens</span>
-                            <span>Medical Care</span>
-                        </div>
-                    </div>
-                    <button class="assign-btn">Assign Pet</button>
-                </div>
-
-                <div class="foster-card">
-                    <div class="foster-header">
-                        <h3>David Thompson</h3>
-                        <span class="status-badge open">Open / Has Space</span>
-                    </div>
-                    <div class="capacity-info">
-                        <p>Capacity</p>
-                        <p class="capacity-count">1/2 Slots Filled</p>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 50%"></div>
-                    </div>
-                    <div class="current-guests">
-                        <p>Current Guests:</p>
-                        <div class="guest-avatars">
-                            <img src="assets/img/all_pets_img(1).jpg" alt="Guest" class="guest-avatar" />
-                        </div>
-                        <div class="guest-labels">
-                            <span>First-time Foster</span>
-                        </div>
-                    </div>
-                    <button class="assign-btn">Assign Pet</button>
-                </div>
+            <div class="foster-grid" id="fosterGrid">
+                <p style="padding: 20px; color: #6b7280;">Loading network...</p>
             </div>
         </main>
     </div>
 
-    <script>
-        // Filter functionality
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const fosterCards = document.querySelectorAll('.foster-card');
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+            authDomain: "fureverhome-85730.firebaseapp.com",
+            projectId: "fureverhome-85730",
+            storageBucket: "fureverhome-85730.appspot.com",
+            messagingSenderId: "710238936352",
+            appId: "1:710238936352:web:4485728fa66e83d8344b45"
+        };
 
-                const filterType = this.textContent.trim();
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const grid = document.getElementById("fosterGrid");
 
-                // Show/hide cards based on filter
-                fosterCards.forEach(card => {
-                    if (filterType === 'All' || filterType === '') {
-                        card.style.display = 'block';
-                    } else if (filterType === 'Has Vacancy') {
-                        const statusBadge = card.querySelector('.status-badge');
-                        card.style.display = statusBadge && statusBadge.textContent.includes('Open') ? 'block' : 'none';
-                    } else if
+        // --- 1. LOAD FOSTERS ---
+        async function loadFosters() {
+            grid.innerHTML = "";
+            const snapshot = await getDocs(collection(db, "fosters"));
+
+            if (snapshot.empty) {
+                grid.innerHTML = "<p style='grid-column: 1/-1; padding: 20px;'>No volunteers found. Click '+ Add Foster Parent' to start.</p>";
+                return;
+            }
+
+            snapshot.forEach(docSnap => {
+                const foster = docSnap.data();
+                const id = docSnap.id;
+
+                // Logic for displaying the card
+                const hasPet = (foster.currentPet && foster.currentPet !== "None");
+                
+                // Badge styles
+                let badgeClass = "status-open";
+                let badgeText = "Open / Has Space";
+                let progressWidth = "0%";
+                let progressClass = "";
+                
+                if (hasPet) {
+                    badgeClass = "status-full";
+                    badgeText = "Full / Occupied";
+                    progressWidth = "100%"; // Simple logic: if they have a pet, bar is full
+                    progressClass = "full";
+                }
+
+                // Button Logic
+                let buttonHTML = "";
+                let guestHTML = "<span>No current guests</span>";
+
+                if (hasPet) {
+                    // HAS PET -> Show Release Button
+                    guestHTML = `<span class="pet-name">${foster.currentPet}</span> <span>${foster.experience}</span>`;
+                    buttonHTML = `<button class="btn-assign btn-release" onclick="window.updateAssignment('${id}', 'None')">Release ${foster.currentPet}</button>`;
+                } else {
+                    // NO PET -> Show Assign Button
+                    guestHTML = `<span>${foster.experience}</span>`;
+                    buttonHTML = `<button class="btn-assign" onclick="window.assignPet('${id}')">Assign Pet</button>`;
+                }
+
+                // Create the card using your layout
+                const card = `
+                    <div class="foster-card">
+                        <div>
+                            <div class="foster-header">
+                                <h3 class="foster-name">${foster.name}</h3>
+                                <span class="status-badge ${badgeClass}">${badgeText}</span>
+                            </div>
+                            
+                            <div class="capacity-info">
+                                <p>Capacity</p>
+                                <p class="capacity-count">${hasPet ? "1/1 Filled" : "0/1 Filled"}</p>
+                            </div>
+                            
+                            <div class="progress-track">
+                                <div class="progress-fill ${progressClass}" style="width: ${progressWidth}"></div>
+                            </div>
+                            
+                            <div class="current-guests">
+                                <p>Current Guests / Preference:</p>
+                                <div class="guest-labels">
+                                    ${guestHTML}
+                                </div>
+                            </div>
+                        </div>
+                        ${buttonHTML}
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        // --- 2. ASSIGN PET FUNCTION ---
+        window.assignPet = async (fosterId) => {
+            const petName = prompt("Enter the name of the pet to assign:");
+            if (petName) {
+                await updateAssignment(fosterId, petName);
+            }
+        };
+
+        // --- 3. UPDATE DATABASE ---
+        window.updateAssignment = async (fosterId, petName) => {
+            try {
+                const fosterRef = doc(db, "fosters", fosterId);
+                const newStatus = (petName === "None") ? "Open" : "Full";
+
+                await updateDoc(fosterRef, {
+                    currentPet: petName,
+                    status: newStatus
+                });
+
+                alert("Foster assignment updated!");
+                loadFosters(); // Refresh page
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Update failed.");
+            }
+        };
+
+        loadFosters();
+    </script>
+</body>
+</html>
