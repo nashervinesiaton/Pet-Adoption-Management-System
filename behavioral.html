@@ -11,7 +11,6 @@
 <body>
     <aside class="sidebar">
         <h1><a href="index.html">FurEverHome</a></h1>
-        
         <ul class="sidebar-contents">
             <p>MAIN</p>
             <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
@@ -24,7 +23,6 @@
             <li><a href="adoptions.html"><i class="fas fa-heart"></i> Adoptions</a></li>
             <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
         </ul>
-
         <button class="add" onclick="window.location.href='add_pet.html'">+ Add New Pet</button>
     </aside>
 
@@ -33,23 +31,13 @@
             <div class="navbar-left">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search pets, applicants, or tag numbers..." />
+                    <input type="text" placeholder="Search pets..." />
                 </div>
             </div>
-
             <div class="navbar-right">
-                <div class="notification-icon">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </div>
-
                 <div class="admin-profile">
-                    <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
-                    <div class="profile-info">
-                        <p class="profile-name">Admin User</p>
-                        <p class="profile-role">Administrator</p>
-                    </div>
-                    <i class="fas fa-chevron-down"></i>
+                    <img src="assets/img/admin-profile.jpg" class="profile-img" />
+                    <div class="profile-info"><p class="profile-name">Admin User</p></div>
                 </div>
             </div>
         </nav>
@@ -61,187 +49,87 @@
                     <p>Track temperament and behavioral assessments</p>
                 </div>
                 <div class="page-actions">
-                    <button class="appointment">+ New Assessment</button>
+                    <button class="appointment" onclick="window.location.href='add_behavior_log.html'">+ New Assessment</button>
                 </div>
             </div>
 
-            <div class="behavior-list">
-                <div class="behavior-card">
-                    <div class="behavior-thumb">
-                        <img src="assets/img/all_pets_img(1).jpg" alt="Luna" />
-                    </div>
-                    <div class="behavior-body">
-                        <div class="behavior-top">
-                            <div class="pet-meta">
-                                <p class="pet-name">Luna</p>
-                                <p class="pet-sub">Golden Retriever · Dog</p>
-                                <p class="pet-assessed">Last assessed: 2024-12-01</p>
-                            </div>
-                            <div class="status-badge excellent">Excellent</div>
-                        </div>
-
-                        <div class="behavior-stats">
-                            <div class="stat">
-                                <label>Friendliness</label>
-                                <div class="progress-track"><div class="progress-fill green" style="width:95%"></div></div>
-                                <span class="stat-value">95%</span>
-                            </div>
-                            <div class="stat">
-                                <label>Trainability</label>
-                                <div class="progress-track"><div class="progress-fill green" style="width:90%"></div></div>
-                                <span class="stat-value">90%</span>
-                            </div>
-                            <div class="stat">
-                                <label>Energy Level</label>
-                                <div class="progress-track"><div class="progress-fill orange" style="width:85%"></div></div>
-                                <span class="stat-value">85%</span>
-                            </div>
-                        </div>
-                        <div class="notes">Notes: Excellent with children. Very responsive to commands.</div>
-                    </div>
+            <div class="behavior-list" id="behaviorList">
                 </div>
-
-                <div class="behavior-card">
-                    <div class="behavior-thumb">
-                        <img src="assets/img/all_pets_img(1).jpg" alt="Rex" />
-                    </div>
-                    <div class="behavior-body">
-                        <div class="behavior-top">
-                            <div class="pet-meta">
-                                <p class="pet-name">Rex</p>
-                                <p class="pet-sub">German Shepherd · Dog</p>
-                                <p class="pet-assessed">Last assessed: 2024-11-28</p>
-                            </div>
-                            <div class="status-badge danger">Needs Attention</div>
-                        </div>
-
-                        <div class="behavior-stats">
-                            <div class="stat">
-                                <label>Friendliness</label>
-                                <div class="progress-track"><div class="progress-fill green" style="width:70%"></div></div>
-                                <span class="stat-value">70%</span>
-                            </div>
-                            <div class="stat">
-                                <label>Trainability</label>
-                                <div class="progress-track"><div class="progress-fill green" style="width:85%"></div></div>
-                                <span class="stat-value">85%</span>
-                            </div>
-                            <div class="stat">
-                                <label>Energy Level</label>
-                                <div class="progress-track"><div class="progress-fill orange" style="width:90%"></div></div>
-                                <span class="stat-value">90%</span>
-                            </div>
-                        </div>
-                        <div class="notes">Notes: Needs experienced handler. High energy level.</div>
-                    </div>
-                </div>
-
-                <div class="behavior-card">
-                    <div class="behavior-thumb">
-                        <img src="assets/img/all_pets_img(1).jpg" alt="Max" />
-                    </div>
-                    <div class="behavior-body">
-                        <div class="behavior-top">
-                            <div class="pet-meta">
-                                <p class="pet-name">Max</p>
-                                <p class="pet-sub">Labrador Retriever · Dog</p>
-                                <p class="pet-assessed">Last assessed: 2024-12-05</p>
-                            </div>
-                            <div class="status-badge progress">In Progress</div>
-                        </div>
-
-                        <div class="behavior-stats">
-                            <div class="stat">
-                                <label>Friendliness</label>
-                                <div class="progress-track"><div class="progress-fill green" style="width:88%"></div></div>
-                                <span class="stat-value">88%</span>
-                            </div>
-                            <div class="stat">
-                                <label>Trainability</label>
-                                <div class="progress-track"><div class="progress-fill green" style="width:75%"></div></div>
-                                <span class="stat-value">75%</span>
-                            </div>
-                            <div class="stat">
-                                <label>Energy Level</label>
-                                <div class="progress-track"><div class="progress-fill orange" style="width:95%"></div></div>
-                                <span class="stat-value">95%</span>
-                            </div>
-                        </div>
-                        <div class="notes">Notes: Puppy energy. Still learning basic commands.</div>
-                    </div>
-                </div>
-
-                <div class="behavior-card">
-                    <div class="behavior-thumb">
-                        <img src="assets/img/all_pets_img(1).jpg" alt="Whiskers" />
-                    </div>
-                    <div class="behavior-body">
-                        <div class="behavior-top">
-                            <div class="pet-meta">
-                                <p class="pet-name">Whiskers</p>
-                                <p class="pet-sub">Tabby · Cat</p>
-                                <p class="pet-assessed">Last assessed: 2024-11-25</p>
-                            </div>
-                            <div class="status-badge excellent">Excellent</div>
-                        </div>
-
-                        <div class="behavior-stats">
-                            <div class="stat">
-                                <label>Friendliness</label>
-                                <div class="progress-track"><div class="progress-fill green" style="width:80%"></div></div>
-                                <span class="stat-value">80%</span>
-                            </div>
-                            <div class="stat">
-                                <label>Trainability</label>
-                                <div class="progress-track"><div class="progress-fill green" style="width:60%"></div></div>
-                                <span class="stat-value">60%</span>
-                            </div>
-                            <div class="stat">
-                                <label>Energy Level</label>
-                                <div class="progress-track"><div class="progress-fill orange" style="width:70%"></div></div>
-                                <span class="stat-value">70%</span>
-                            </div>
-                        </div>
-                        <div class="notes">Notes: Independent but affectionate. Prefers quiet environments.</div>
-                    </div>
-                </div>
-
-                <div class="behavior-card">
-                    <div class="behavior-thumb">
-                        <img src="assets/img/all_pets_img(1).jpg" alt="Buddy" />
-                    </div>
-                    <div class="behavior-body">
-                        <div class="behavior-top">
-                            <div class="pet-meta">
-                                <p class="pet-name">Buddy</p>
-                                <p class="pet-sub">Beagle · Dog</p>
-                                <p class="pet-assessed">Last assessed: 2024-12-03</p>
-                            </div>
-                            <div class="status-badge excellent">Excellent</div>
-                        </div>
-
-                        <div class="behavior-stats">
-                            <div class="stat">
-                                <label>Friendliness</label>
-                                <div class="progress-track"><div class="progress-fill green" style="width:92%"></div></div>
-                                <span class="stat-value">92%</span>
-                            </div>
-                            <div class="stat">
-                                <label>Trainability</label>
-                                <div class="progress-track"><div class="progress-fill green" style="width:80%"></div></div>
-                                <span class="stat-value">80%</span>
-                            </div>
-                            <div class="stat">
-                                <label>Energy Level</label>
-                                <div class="progress-track"><div class="progress-fill orange" style="width:75%"></div></div>
-                                <span class="stat-value">75%</span>
-                            </div>
-                        </div>
-                        <div class="notes">Notes: Great family dog. Loves everyone.</div>
-                    </div>
-                </div>
-            </div>
         </main>
     </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+            authDomain: "fureverhome-85730.firebaseapp.com",
+            projectId: "fureverhome-85730",
+            storageBucket: "fureverhome-85730.appspot.com",
+            messagingSenderId: "710238936352",
+            appId: "1:710238936352:web:4485728fa66e83d8344b45"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const listContainer = document.getElementById('behaviorList');
+
+        async function loadLogs() {
+            listContainer.innerHTML = "<p>Fetching assessments...</p>";
+            const snapshot = await getDocs(collection(db, "behavioral_logs"));
+            listContainer.innerHTML = "";
+
+            snapshot.forEach(docSnap => {
+                const log = docSnap.data();
+                
+                // Logic for your Status Badges
+                let statusClass = "excellent";
+                let statusText = "Excellent";
+                if(log.friendliness < 75) { statusClass = "progress"; statusText = "In Progress"; }
+                if(log.friendliness < 50) { statusClass = "danger"; statusText = "Needs Attention"; }
+
+                // USING YOUR EXACT HTML STRUCTURE
+                const card = `
+                <div class="behavior-card">
+                    <div class="behavior-thumb">
+                        <img src="${log.petImg}" alt="${log.petName}" onerror="this.src='assets/img/default-dog.jpg'" />
+                    </div>
+                    <div class="behavior-body">
+                        <div class="behavior-top">
+                            <div class="pet-meta">
+                                <p class="pet-name">${log.petName}</p>
+                                <p class="pet-sub">${log.petBreed}</p>
+                                <p class="pet-assessed">Last assessed: ${log.date}</p>
+                            </div>
+                            <div class="status-badge ${statusClass}">${statusText}</div>
+                        </div>
+
+                        <div class="behavior-stats">
+                            <div class="stat">
+                                <label>Friendliness</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:${log.friendliness}%"></div></div>
+                                <span class="stat-value">${log.friendliness}%</span>
+                            </div>
+                            <div class="stat">
+                                <label>Trainability</label>
+                                <div class="progress-track"><div class="progress-fill green" style="width:${log.trainability}%"></div></div>
+                                <span class="stat-value">${log.trainability}%</span>
+                            </div>
+                            <div class="stat">
+                                <label>Energy Level</label>
+                                <div class="progress-track"><div class="progress-fill orange" style="width:${log.energy}%"></div></div>
+                                <span class="stat-value">${log.energy}%</span>
+                            </div>
+                        </div>
+                        <div class="notes">Notes: ${log.notes}</div>
+                    </div>
+                </div>
+                `;
+                listContainer.innerHTML += card;
+            });
+        }
+        loadLogs();
+    </script>
 </body>
 </html>
