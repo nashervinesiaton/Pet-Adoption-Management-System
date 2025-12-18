@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FurEverHome</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .contact-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info h2 { color: #1a1a1a; margin-bottom: 20px; font-size: 2rem; }
+        .contact-info p { color: #666; line-height: 1.6; margin-bottom: 30px; }
+        
+        .info-item { display: flex; align-items: center; margin-bottom: 20px; color: #444; }
+        .info-item i { margin-right: 15px; color: #8b5cf6; font-size: 1.2rem; }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus { border-color: #8b5cf6; }
+
+        .btn-send {
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-send:hover { background: #7c3aed; }
+
+        @media (max-width: 768px) {
+            .contact-container { grid-template-columns: 1fr; margin: 50px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <h1 class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">FurEverHome</a></h1>
+            <ul class="nav-links">
+                <li><a href="adopt.html">Adopt a Pet</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li><a href="contact.html" class="active">Contact Us</a></li>
+                <li><a href="login.html">Log-in</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>Have questions about a pet or the adoption process? Send us a message and our team will get back to you within 24 hours.</p>
+            
+            <div class="info-item"><i class="fas fa-map-marker-alt"></i> 123 Rescue Way, Pet City</div>
+            <div class="info-item"><i class="fas fa-phone"></i> +1 (555) 123-4567</div>
+            <div class="info-item"><i class="fas fa-envelope"></i> hello@fureverhome.com</div>
+        </div>
+
+        <div class="contact-form">
+            <form id="contactForm">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email Address" required>
+                <textarea id="message" rows="5" placeholder="Your Message..." required></textarea>
+                <button type="submit" class="btn-send" id="submitBtn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+            authDomain: "fureverhome-85730.firebaseapp.com",
+            projectId: "fureverhome-85730",
+            storageBucket: "fureverhome-85730.appspot.com",
+            messagingSenderId: "710238936352",
+            appId: "1:710238936352:web:4485728fa66e83d8344b45"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            try {
+                submitBtn.innerText = "Sending...";
+                submitBtn.disabled = true;
+              
+                await addDoc(collection(db, "messages"), {
+                    name: name,
+                    email: email,
+                    text: message,
+                    timestamp: serverTimestamp()
+                });
+
+                alert("Thank you! Your message has been sent.");
+                contactForm.reset();
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Something went wrong. Please try again.");
+            } finally {
+                submitBtn.innerText = "Send Message";
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
