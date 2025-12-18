@@ -162,51 +162,78 @@
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, onSnapshot, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
-            authDomain: "fureverhome-85730.firebaseapp.com",
-            projectId: "fureverhome-85730",
-            storageBucket: "fureverhome-85730.appspot.com",
-            messagingSenderId: "710238936352",
-            appId: "1:710238936352:web:4485728fa66e83d8344b45"
-        };
+    const firebaseConfig = {
+        apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+        authDomain: "fureverhome-85730.firebaseapp.com",
+        projectId: "fureverhome-85730",
+        storageBucket: "fureverhome-85730.appspot.com",
+        messagingSenderId: "710238936352",
+        appId: "1:710238936352:web:4485728fa66e83d8344b45"
+    };
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-        async function loadStats() {
-            try {
-                const snapshot = await getDocs(collection(db, "pets"));
-                
-                let total = 0;
-                let available = 0;
-                let foster = 0;
-                let adopted = 0;
+    async function loadStats() {
+        try {
+            const snapshot = await getDocs(collection(db, "pets"));
+            let total = 0, available = 0, foster = 0, adopted = 0;
 
-                snapshot.forEach((doc) => {
-                    const pet = doc.data();
-                    total++; 
+            snapshot.forEach((doc) => {
+                const pet = doc.data();
+                total++; 
+                if (pet.status === "Available") available++;
+                if (pet.status === "Foster Care") foster++;
+                if (pet.status === "Adopted") adopted++;
+            });
 
-                    if (pet.status === "Available") available++;
-                    if (pet.status === "Foster Care") foster++;
-                    if (pet.status === "Adopted") adopted++;
-                });
+            document.getElementById("countTotal").innerText = total;
+            document.getElementById("countAvailable").innerText = available;
+            document.getElementById("countFoster").innerText = foster;
+            document.getElementById("countAdopted").innerText = adopted;
+        } catch (error) { console.error("Stats Error:", error); }
+    }
 
-                document.getElementById("countTotal").innerText = total;
-                document.getElementById("countAvailable").innerText = available;
-                document.getElementById("countFoster").innerText = foster;
-                document.getElementById("countAdopted").innerText = adopted;
+    const activityContainer = document.querySelector('.activity-content');
+    onSnapshot(query(collection(db, "activity_feed"), orderBy("timestamp", "desc"), limit(5)), (snapshot) => {
+        activityContainer.innerHTML = "";
+        snapshot.forEach((doc) => {
+            const act = doc.data();
+            activityContainer.innerHTML += `
+                <div class="activity-item">
+                    <div class="activity-icon ${act.type || 'pet-intake'}">
+                        <i class="${act.icon || 'fas fa-paw'}"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h3>${act.title}</h3>
+                        <p>${act.subtitle}</p>
+                    </div>
+                </div>`;
+        });
+    });
 
-            } catch (error) {
-                console.error("Error loading stats:", error);
-            }
-        }
+    const priorityContainer = document.querySelector('.priorities-list');
+    onSnapshot(collection(db, "priorities"), (snapshot) => {
+        priorityContainer.innerHTML = "";
+        let pendingCount = 0;
+        snapshot.forEach((doc) => {
+            const task = doc.data();
+            if (!task.completed) pendingCount++;
+            priorityContainer.innerHTML += `
+                <div class="priority-task ${task.completed ? 'completed' : ''}">
+                    <input type="checkbox" ${task.completed ? 'checked' : ''} class="priority-checkbox" />
+                    <label>${task.taskName}</label>
+                    ${task.level === 'High' ? '<span class="priority-badge high">High Priority</span>' : ''}
+                </div>`;
+        });
+        document.querySelector('.pending-count').innerText = `${pendingCount} pending`;
+    });
 
-        loadStats();
-    </script>
+    loadStats();
+</script>
 
 </body>
 </html>

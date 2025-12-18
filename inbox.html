@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="messages" id="messageBox">
-                        </div>
+                    </div>
 
                     <div class="message-input">
                         <i class="fas fa-paperclip"></i>
@@ -108,42 +108,48 @@
         const chatName = document.getElementById('chatName');
         const chatEmail = document.getElementById('chatEmail');
 
+        // Watch for changes in the "messages" collection
         const q = query(collection(db, "messages"), orderBy("timestamp", "desc"));
         
         onSnapshot(q, (snapshot) => {
             convoList.innerHTML = "";
             if (snapshot.empty) {
-                convoList.innerHTML = '<p style="padding: 20px; color: #9ca3af;">No messages yet.</p>';
+                convoList.innerHTML = '<p style="padding: 20px; color: #9ca3af; text-align: center;">No messages yet.</p>';
                 return;
             }
 
             snapshot.forEach(doc => {
                 const msg = doc.data();
-                const initials = msg.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+                
+                // DATA CORRECTION: Use msg.message (what your form sends)
+                const textContent = msg.message || "No content";
+                const senderName = msg.name || "Anonymous";
+                
+                const initials = senderName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
                 
                 const item = document.createElement('div');
                 item.className = "conversation-item";
                 item.innerHTML = `
                     <div class="avatar">${initials}</div>
                     <div class="conversation-info">
-                        <h3>${msg.name}</h3>
-                        <p class="preview">${msg.text.substring(0, 25)}...</p>
+                        <h3>${senderName}</h3>
+                        <p class="preview">${textContent.substring(0, 25)}...</p>
                     </div>
                 `;
                 
                 item.onclick = () => {
                     noSelect.style.display = "none";
                     threadArea.style.display = "flex";
-                    chatName.innerText = msg.name;
-                    chatEmail.innerText = msg.email;
+                    chatName.innerText = senderName;
+                    chatEmail.innerText = msg.email || "No email provided";
                     
-                    const date = msg.timestamp ? msg.timestamp.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : "Just now";
+                    const time = msg.timestamp ? msg.timestamp.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : "Just now";
 
                     messageBox.innerHTML = `
                         <div class="message incoming">
                             <div class="message-bubble">
-                                <p>${msg.text}</p>
-                                <span class="message-time">${date}</span>
+                                <p>${textContent}</p>
+                                <span class="message-time">${time}</span>
                             </div>
                         </div>
                     `;

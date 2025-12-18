@@ -6,7 +6,7 @@
     <title>Add New Pet</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* --- CSS STYLES --- */
+
         * {
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -209,7 +209,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // YOUR CONFIGURATION
         const firebaseConfig = {
             apiKey: "AIzaSyD2xDd4HpSRaUBlUNLG4WxqB-mXFYKVHF",
             authDomain: "fureverhome-85730.firebaseapp.com",
@@ -222,82 +221,67 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // --- IMAGE HANDLING (BASE64 STRATEGY) ---
         const imageInput = document.getElementById('petImage');
         const imagePreview = document.getElementById('imagePreview');
-        let base64String = ""; // This holds the image as text
+        let base64String = ""; 
 
-        // Open file selector
-        imagePreview.addEventListener('click', () => {
-            imageInput.click();
-        });
+        imagePreview.addEventListener('click', () => { imageInput.click(); });
 
-        // When a file is selected
         imageInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (file) {
-                // ⚠️ SAFETY CHECK: Limit file size to 800KB
-                // Firestore documents have a 1MB max limit.
                 if (file.size > 800 * 1024) {
-                    alert("This image is too big! Please choose a smaller image (under 800KB) or take a screenshot of it.");
+                    alert("This image is too big! Please choose a smaller image (under 800KB).");
                     return;
                 }
-
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    base64String = e.target.result; // This converts image to text
-                    
-                    // Show preview
+                    base64String = e.target.result;
                     imagePreview.style.backgroundImage = `url(${base64String})`;
-                    imagePreview.innerHTML = ''; // Hide the icon/text
+                    imagePreview.innerHTML = ''; 
                 };
                 reader.readAsDataURL(file);
             }
         });
 
-        // --- FORM SUBMISSION ---
         const addPetForm = document.getElementById('addPetForm');
 
         addPetForm.addEventListener('submit', async (e) => {
             e.preventDefault(); 
 
-            // Get values
             const name = document.getElementById('petName').value;
             const breed = document.getElementById('petBreed').value;
             const age = document.getElementById('petAge').value;
             const status = document.getElementById('petStatus').value;
             const submitBtn = document.querySelector('.btn-save');
 
-            // Ensure image is selected
             if (!base64String) {
                 alert("Please click the box to add a photo!");
                 return;
             }
 
             try {
-                // Show loading state
                 submitBtn.textContent = "Saving...";
                 submitBtn.disabled = true;
 
-                // Save to Firestore (Image is now text inside the 'imageUrl' field)
                 await addDoc(collection(db, "pets"), {
                     name: name,
                     breed: breed,
                     age: Number(age),
                     status: status,
-                    imageUrl: base64String, // <--- Saving the image data directly
+                    imageUrl: base64String,
                     createdAt: serverTimestamp()
                 });
 
+                await addDoc(collection(db, "activity_feed"), {
+                    title: "New Pet Intake",
+                    subtitle: `${name} (${breed}) was added to the center`,
+                    type: "pet-intake", // Styling class
+                    icon: "fas fa-paw",
+                    timestamp: serverTimestamp()
+                });
+
                 alert("Pet saved successfully!");
-                
-                // Reset everything
-                addPetForm.reset();
-                imagePreview.style.backgroundImage = 'none';
-                imagePreview.innerHTML = '<i class="fas fa-camera"></i><span>Click to upload photo</span>';
-                base64String = "";
-                
-                // Redirect to list
                 window.location.href = 'all_pets.html';
 
             } catch (error) {
@@ -309,6 +293,5 @@
             }
         });
     </script>
-
 </body>
 </html>
