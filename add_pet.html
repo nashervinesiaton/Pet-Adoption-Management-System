@@ -1,77 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add New Pet</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Pet</title>
+    <style>
+        /* --- CSS STYLES (THE DESIGN) --- */
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-  <link rel="stylesheet" href="assets/css/admin.css" />
+        body {
+            background-color: #f4f4f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background-color: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .btn-close {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            color: #9ca3af;
+            display: flex;
+            transition: all 0.2s ease;
+        }
+
+        .btn-close:hover {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #374151;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            background-color: #fff;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-save {
+            width: 100%;
+            padding: 12px;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-save:hover {
+            background-color: #059669;
+        }
+    </style>
 </head>
 <body>
 
-  <h2>Add New Pet</h2>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Add New Pet</h2>
+            <button class="btn-close" onclick="window.location.href='index.html'" type="button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+      
+        <form id="addPetForm">
+            <div class="form-group">
+                <label for="petName">Pet Name</label>
+                <input type="text" id="petName" required placeholder="e.g. Buddy">
+            </div>
 
-  <form id="petForm">
-    <label>Pet Name</label><br />
-    <input type="text" id="name" required /><br /><br />
+            <div class="form-group">
+                <label for="petBreed">Breed</label>
+                <input type="text" id="petBreed" required placeholder="e.g. Golden Retriever">
+            </div>
 
-    <label>Breed</label><br />
-    <input type="text" id="breed" required /><br /><br />
+            <div class="form-group">
+                <label for="petAge">Age (years)</label>
+                <input type="number" id="petAge" required placeholder="0" min="0">
+            </div>
 
-    <label>Age (years)</label><br />
-    <input type="number" id="age" required /><br /><br />
+            <div class="form-group">
+                <label for="petStatus">Status</label>
+                <select id="petStatus">
+                    <option value="Available">Available</option>
+                    <option value="Adopted">Adopted</option>
+                    <option value="Foster Care">Foster Care</option>
+                </select>
+            </div>
 
-    <label>Status</label><br />
-    <select id="status">
-      <option value="Available">Available</option>
-      <option value="Adopted">Adopted</option>
-    </select><br /><br />
+            <button type="submit" class="btn-save">Save Pet</button>
+        </form>
+    </div>
 
-    <button type="submit">Save Pet</button>
-  </form>
+    <script type="module">
+        // Import Firebase functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  <p id="message"></p>
+        // YOUR CONFIGURATION (Copied from your screenshot)
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2xDd4HpSRaUBlUNLG4WxqB-mXFYKVHF",
+            authDomain: "fureverhome-85730.firebaseapp.com",
+            projectId: "fureverhome-85730",
+            storageBucket: "fureverhome-85730.appspot.com",
+            messagingSenderId: "710238936352",
+            appId: "1:710238936352:web:4485728fa66e83d8344b45"
+        };
 
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyD2xDd4HpSRaUBlUNLG4Wxqb-mXFYKVHF",
-      authDomain: "fureverhome-85730.firebaseapp.com",
-      projectId: "fureverhome-85730",
-      storageBucket: "fureverhome-85730.appspot.com",
-      messagingSenderId: "710238936352",
-      appId: "1:710238936352:web:4485728fa66e83d8344b45"
-    };
+        // Handle Form Submission
+        const addPetForm = document.getElementById('addPetForm');
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+        addPetForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Stop page reload
 
-    const form = document.getElementById("petForm");
-    const message = document.getElementById("message");
+            // Get values
+            const name = document.getElementById('petName').value;
+            const breed = document.getElementById('petBreed').value;
+            const age = document.getElementById('petAge').value;
+            const status = document.getElementById('petStatus').value;
+            const submitBtn = document.querySelector('.btn-save');
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+            try {
+                // Show loading state
+                submitBtn.textContent = "Saving...";
+                submitBtn.disabled = true;
 
-      try {
-        await addDoc(collection(db, "pets"), {
-          name: document.getElementById("name").value,
-          breed: document.getElementById("breed").value,
-          age: Number(document.getElementById("age").value),
-          status: document.getElementById("status").value,
-          createdAt: new Date()
+                // Save to Firestore
+                await addDoc(collection(db, "pets"), {
+                    name: name,
+                    breed: breed,
+                    age: Number(age),
+                    status: status,
+                    createdAt: serverTimestamp()
+                });
+
+                alert("Pet saved successfully!");
+                
+                // Clear form
+                addPetForm.reset();
+                
+                // Optional: Redirect to list
+                window.location.href = 'all_pets.html';
+
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                alert("Error saving pet: " + error.message);
+            } finally {
+                // Reset button state
+                submitBtn.textContent = "Save Pet";
+                submitBtn.disabled = false;
+            }
         });
-
-        message.textContent = "Pet successfully added!";
-        form.reset();
-      } catch (error) {
-        message.textContent = "Error adding pet";
-        console.error(error);
-      }
-    });
-  </script>
+    </script>
 
 </body>
 </html>
