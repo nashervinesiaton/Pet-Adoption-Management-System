@@ -37,13 +37,11 @@
             <div class="navbar-right">
                 <div class="notification-icon">
                     <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
                 </div>
                 <div class="admin-profile">
                     <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
                     <div class="profile-info">
                         <p class="profile-name">Admin User</p>
-                        <p class="profile-role">Administrator</p>
                     </div>
                 </div>
             </div>
@@ -60,48 +58,10 @@
                 </div>
             </div>
 
-            <div class="critical-container">
-                <div class="table-header">
-                    <h2><i class="fas fa-exclamation-triangle"></i> Critical Alerts</h2>
-                    <span class="critical-count">3</span>
-                </div>
-                <div class="critical-list">
-                    <div class="critical-item">
-                        <div class="critical-thumb"><img src="assets/img/all_pets_img(1).jpg" alt="Whiskers"/></div>
-                        <div class="critical-content">
-                            <div class="critical-text">
-                                <p class="critical-name">Whiskers</p>
-                                <p class="critical-issue">Rabies Vaccination Overdue</p>
-                                <p class="critical-due">Due: 2024-12-10</p>
-                            </div>
-                            <div class="critical-actions"><button class="overdue">3d overdue</button></div>
-                        </div>
-                    </div>
-                    </div>
-            </div>
-
-            <div class="tasks-activity-wrapper">
-                <div class="upcoming-tasks-container">
-                    <div class="task-header">
-                        <i class="fas fa-clock"></i>
-                        <h2>Upcoming Tasks</h2>
-                    </div>
-                    <div class="task-list">
-                        <div class="task-item">
-                            <div class="task-thumb"><img src="assets/img/all_pets_img(1).jpg" alt="Luna"/></div>
-                            <div class="task-content">
-                                <p class="task-name">Luna</p>
-                                <p class="task-description">Annual Checkup</p>
-                                <p class="task-time">In 8 days</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="recent-container">
+            <div class="tasks-activity-wrapper" style="grid-template-columns: 1fr;"> <div class="recent-container">
                     <div class="recent-header">
-                        <i class="fas fa-check-circle"></i>
-                        <h2>Recent Activity</h2>
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Medical History (Real Data)</h2>
                     </div>
 
                     <div class="recent-contents" id="recentActivityList">
@@ -131,32 +91,48 @@
 
         async function loadMedicalLogs() {
             try {
-                // Try to sort by date. If this fails due to missing index, it will catch error.
-                // If it fails, we will remove orderBy in the catch block or just show console error.
-                // For now, let's try simple fetch if you haven't set up indexes yet.
                 const q = query(collection(db, "medical_logs")); 
                 const snapshot = await getDocs(q);
 
                 if (snapshot.empty) {
-                    recentList.innerHTML = "<p style='padding: 20px'>No records found. Add one!</p>";
+                    recentList.innerHTML = `
+                        <div style="padding:40px; text-align:center; color:#6b7280;">
+                            <i class="fas fa-folder-open" style="font-size: 2rem; margin-bottom:10px;"></i>
+                            <p>No medical records yet.</p>
+                            <p>Click "Add Medical Record" to create one.</p>
+                        </div>`;
                     return;
                 }
 
-                recentList.innerHTML = ""; // Clear loading text
+                recentList.innerHTML = ""; 
+                const records = [];
+                snapshot.forEach(doc => records.push(doc.data()));
+                
+                records.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-                snapshot.forEach((doc) => {
-                    const data = doc.data();
+                records.forEach((data) => {
+                    let iconClass = "fa-notes-medical";
+                    let colorClass = "#ef4444"; 
                     
+                    if(data.type === "Vaccination") { iconClass = "fa-syringe"; colorClass = "#3b82f6"; } 
+                    if(data.type === "Surgery") { iconClass = "fa-user-md"; colorClass = "#dc2626"; } 
+                    if(data.type === "Check-up") { iconClass = "fa-stethoscope"; colorClass = "#10b981"; } 
+
                     const item = `
                         <div class="recent-item">
-                            <div class="recent-dot"></div>
-                            <div class="recent-text">
-                                <p class="recent-name">${data.petName}</p>
-                                <p class="recent-description">${data.type} - ${data.notes}</p>
-                                <p class="recent-date">${data.date}</p>
+                            <div class="recent-icon" style="
+                                background: ${colorClass}20; 
+                                color: ${colorClass}; 
+                                width: 40px; height: 40px; 
+                                border-radius: 50%; 
+                                display: flex; align-items: center; justify-content: center; 
+                                margin-right: 15px;">
+                                <i class="fas ${iconClass}"></i>
                             </div>
-                            <div class="recent-check">
-                                <i class="fas fa-check-circle"></i>
+                            <div class="recent-text">
+                                <p class="recent-name" style="font-weight: bold;">${data.petName}</p>
+                                <p class="recent-description" style="color:#6b7280;">${data.type}: ${data.notes}</p>
+                                <p class="recent-date" style="font-size:0.85rem; color:#9ca3af;">${data.date}</p>
                             </div>
                         </div>
                     `;
