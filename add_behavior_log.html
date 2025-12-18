@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Behavioral Assessment</title>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .form-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #4b5563; }
+        input[type="range"] { width: 100%; cursor: pointer; accent-color: #8b5cf6; }
+        .score-display { float: right; color: #8b5cf6; font-weight: bold; }
+        select, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #d1d5db; box-sizing: border-box; }
+        .save-btn { width: 100%; background: #8b5cf6; color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2><i class="fas fa-brain"></i> New Assessment</h2>
+        <form id="behaviorForm">
+            <div class="form-group">
+                <label>Select Pet</label>
+                <select id="petSelect" required><option value="">-- Select Pet --</option></select>
+            </div>
+            <div class="form-group">
+                <label>Friendliness <span id="fVal" class="score-display">50%</span></label>
+                <input type="range" id="friendliness" min="0" max="100" value="50" oninput="document.getElementById('fVal').innerText=this.value+'%'">
+            </div>
+            <div class="form-group">
+                <label>Trainability <span id="tVal" class="score-display">50%</span></label>
+                <input type="range" id="trainability" min="0" max="100" value="50" oninput="document.getElementById('tVal').innerText=this.value+'%'">
+            </div>
+            <div class="form-group">
+                <label>Energy Level <span id="eVal" class="score-display">50%</span></label>
+                <input type="range" id="energy" min="0" max="100" value="50" oninput="document.getElementById('eVal').innerText=this.value+'%'">
+            </div>
+            <div class="form-group">
+                <label>Summary Notes</label>
+                <textarea id="notes" rows="2" placeholder="e.g. Great with kids..."></textarea>
+            </div>
+            <button type="submit" class="save-btn">Save Assessment</button>
+            <a href="behavioral.html" style="display:block; text-align:center; margin-top:15px; color:#6b7280; text-decoration:none;">Go Back</a>
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+            authDomain: "fureverhome-85730.firebaseapp.com",
+            projectId: "fureverhome-85730",
+            storageBucket: "fureverhome-85730.appspot.com",
+            messagingSenderId: "710238936352",
+            appId: "1:710238936352:web:4485728fa66e83d8344b45"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Load pets into dropdown
+        const petSelect = document.getElementById('petSelect');
+        const petSnap = await getDocs(collection(db, "pets"));
+        petSnap.forEach(doc => {
+            const data = doc.data();
+            let opt = document.createElement('option');
+            opt.value = doc.id;
+            opt.text = data.name;
+            opt.dataset.img = data.imageUrl || "assets/img/default-dog.jpg";
+            opt.dataset.breed = data.breed;
+            petSelect.add(opt);
+        });
+
+        document.getElementById('behaviorForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const sel = petSelect.options[petSelect.selectedIndex];
+            await addDoc(collection(db, "behavioral_logs"), {
+                petName: sel.text,
+                petBreed: sel.dataset.breed,
+                petImg: sel.dataset.img,
+                friendliness: document.getElementById('friendliness').value,
+                trainability: document.getElementById('trainability').value,
+                energy: document.getElementById('energy').value,
+                notes: document.getElementById('notes').value,
+                date: new Date().toISOString().split('T')[0]
+            });
+            window.location.href = "behavioral.html";
+        });
+    </script>
+</body>
+</html>
