@@ -6,12 +6,41 @@
     <title>FurEverHome - Adoptions</title>
     <link rel="stylesheet" href="assets/css/admin.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <style>
+        .applicant-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #3b82f6; 
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .applicant-card:hover { transform: translateY(-2px); }
+
+        .app-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .app-name { font-weight: bold; font-size: 1.1rem; color: #1f2937; }
+        .app-pet { color: #6b7280; font-size: 0.9rem; }
+        .app-reason { background: #f3f4f6; padding: 10px; border-radius: 6px; color: #4b5563; font-size: 0.9rem; margin-bottom: 15px; font-style: italic; }
+        
+        .action-buttons { display: flex; gap: 10px; }
+        .btn-approve, .btn-reject { flex: 1; padding: 8px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: white; transition: 0.2s; }
+        .btn-approve { background-color: #10b981; }
+        .btn-approve:hover { background-color: #059669; }
+        .btn-reject { background-color: #ef4444; }
+        .btn-reject:hover { background-color: #dc2626; }
+
+        /* Status Tags */
+        .tag { padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
+        .tag-pending { background: #dbeafe; color: #2563eb; }
+        .tag-approved { background: #d1fae5; color: #059669; }
+        .tag-rejected { background: #fee2e2; color: #dc2626; }
+    </style>
 </head>
 
 <body>
     <aside class="sidebar">
         <h1><a href="index.html">FurEverHome</a></h1>
-        
         <ul class="sidebar-contents">
             <p>MAIN</p>
             <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
@@ -24,7 +53,6 @@
             <li><a href="adoptions.html" class="active"><i class="fas fa-heart"></i> Adoptions</a></li>
             <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
         </ul>
-
         <button class="add" onclick="window.location.href='add_pet.html'">+ Add New Pet</button>
     </aside>
 
@@ -33,141 +61,127 @@
             <div class="navbar-left">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search pets, applicants, or tag numbers..." />
+                    <input type="text" placeholder="Search applications..." />
                 </div>
             </div>
-
             <div class="navbar-right">
-                <div class="notification-icon">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </div>
-
+                <div class="notification-icon"><i class="fas fa-bell"></i></div>
                 <div class="admin-profile">
-                    <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
+                    <img src="assets/img/admin-profile.jpg" class="profile-img" />
                     <div class="profile-info">
                         <p class="profile-name">Admin User</p>
-                        <p class="profile-role">Administrator</p>
                     </div>
-                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </nav>
 
         <main>
-            <div class="page-header">
-                <div class="page-title">
-                    <h1>Adoption Pipeline</h1>
-                    <p>Manage applications through the adoption process</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div>
+                    <h1>Adoption Applications</h1>
+                    <p>Review and process incoming requests (Real-Time)</p>
                 </div>
-                <div class="page-actions">
-                    <button class="appointment">+ New Application</button>
-                </div>
+                <a href="apply_adopt.html" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: bold;">
+                    View Public Form <i class="fas fa-external-link-alt"></i>
+                </a>
             </div>
 
-            <div class="pipeline-board">
-                <div class="pipeline-column">
-                    <div class="column-header">
-                        <span class="column-title">New Inquiry</span>
-                        <span class="column-count">3</span>
-                    </div>
-                    <div class="column-cards">
-                        <div class="applicant-card">
-                            <p class="applicant-name">Sarah Johnson</p>
-                            <p class="applicant-pet">Pet: Rex</p>
-                            <p class="card-status">New</p>
-                            <span class="status-tag">First-time owner</span>
-                        </div>
-                        <div class="applicant-card">
-                            <p class="applicant-name">Mike Chen</p>
-                            <p class="applicant-pet">Pet: Luna</p>
-                            <p class="card-status">Contacted</p>
-                            <span class="status-tag">Has yard</span>
-                        </div>
-                        <div class="applicant-card">
-                            <p class="applicant-name">Emily Davis</p>
-                            <p class="applicant-pet">Pet: Max</p>
-                            <p class="card-status">New</p>
-                            <span class="status-tag">Experience with breed</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pipeline-column">
-                    <div class="column-header">
-                        <span class="column-title">Interviewing</span>
-                        <span class="column-count">2</span>
-                    </div>
-                    <div class="column-cards">
-                        <div class="applicant-card">
-                            <p class="applicant-name">Tom Wilson</p>
-                            <p class="applicant-pet">Pet: Buddy</p>
-                            <p class="card-status">Phone scheduled</p>
-                            <span class="status-tag">Phone Interview Passed</span>
-                            <button class="card-action">Schedule Interview</button>
-                        </div>
-                        <div class="applicant-card">
-                            <p class="applicant-name">Lisa Anderson</p>
-                            <p class="applicant-pet">Pet: Bella</p>
-                            <p class="card-status">In progress</p>
-                            <span class="status-tag">Reference check pending</span>
-                            <button class="card-action">Schedule Interview</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pipeline-column">
-                    <div class="column-header">
-                        <span class="column-title">Home Visit</span>
-                        <span class="column-count">1</span>
-                    </div>
-                    <div class="column-cards">
-                        <div class="applicant-card">
-                            <p class="applicant-name">James Brown</p>
-                            <p class="applicant-pet">Pet: Charlie</p>
-                            <p class="card-status">Scheduled: Dec 10</p>
-                            <span class="status-tag">Home Visit Passed</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pipeline-column">
-                    <div class="column-header">
-                        <span class="column-title">Trial Period</span>
-                        <span class="column-count">2</span>
-                    </div>
-                    <div class="column-cards">
-                        <div class="applicant-card">
-                            <p class="applicant-name">Anna Martinez</p>
-                            <p class="applicant-pet">Pet: Daisy</p>
-                            <p class="card-status">Day 5 of 14</p>
-                            <span class="status-tag">Going well</span>
-                        </div>
-                        <div class="applicant-card">
-                            <p class="applicant-name">Robert Taylor</p>
-                            <p class="applicant-pet">Pet: Rocky</p>
-                            <p class="card-status">Day 12 of 14</p>
-                            <span class="status-tag">Final check scheduled</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pipeline-column">
-                    <div class="column-header">
-                        <span class="column-title">Finalized</span>
-                        <span class="column-count">1</span>
-                    </div>
-                    <div class="column-cards">
-                        <div class="applicant-card">
-                            <p class="applicant-name">David Lee</p>
-                            <p class="applicant-pet">Pet: Cooper</p>
-                            <p class="card-status">Completed</p>
-                            <span class="status-tag">Success</span>
-                        </div>
-                    </div>
-                </div>
+            <div id="applicationsList">
+                <p style="padding: 20px; color: #6b7280;">Loading applications...</p>
             </div>
+
         </main>
     </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc, query } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+            authDomain: "fureverhome-85730.firebaseapp.com",
+            projectId: "fureverhome-85730",
+            storageBucket: "fureverhome-85730.appspot.com",
+            messagingSenderId: "710238936352",
+            appId: "1:710238936352:web:4485728fa66e83d8344b45"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const listContainer = document.getElementById("applicationsList");
+
+        async function loadApplications() {
+            listContainer.innerHTML = ""; 
+            
+            try {
+                const q = query(collection(db, "adoptions")); 
+                const snapshot = await getDocs(q);
+
+                if (snapshot.empty) {
+                    listContainer.innerHTML = "<p style='padding:20px; color:#666;'>No applications found yet. Submit one via the Public Form!</p>";
+                    return;
+                }
+
+                snapshot.forEach(documentSnapshot => {
+                    const app = documentSnapshot.data();
+                    const appId = documentSnapshot.id;
+
+                    let borderStyle = "border-left: 5px solid #3b82f6;"; 
+                    let buttonsHTML = "";
+
+                    if (app.status === "Approved") {
+                        borderStyle = "border-left: 5px solid #10b981;"; 
+                        buttonsHTML = `<span class="tag tag-approved">Approved</span>`;
+                    } else if (app.status === "Rejected") {
+                        borderStyle = "border-left: 5px solid #ef4444;"; 
+                        buttonsHTML = `<span class="tag tag-rejected">Rejected</span>`;
+                    } else {
+                        buttonsHTML = `
+                            <button class="btn-approve" onclick="window.updateStatus('${appId}', 'Approved')">Approve</button>
+                            <button class="btn-reject" onclick="window.updateStatus('${appId}', 'Rejected')">Reject</button>
+                        `;
+                    }
+
+                    const card = `
+                        <div class="applicant-card" style="${borderStyle}">
+                            <div class="app-header">
+                                <div>
+                                    <div class="app-name">${app.applicantName} <span style="font-weight:normal; font-size:0.8rem; color:#888;">(${app.email})</span></div>
+                                    <div class="app-pet">Applying for: <strong>${app.petName}</strong></div>
+                                </div>
+                                <span class="tag tag-pending">${app.status}</span>
+                            </div>
+                            <div class="app-reason">"${app.reason}"</div>
+                            <div class="action-buttons">
+                                ${buttonsHTML}
+                            </div>
+                        </div>
+                    `;
+                    listContainer.innerHTML += card;
+                });
+            } catch (error) {
+                console.error("Error:", error);
+                listContainer.innerHTML = "<p>Error loading applications.</p>";
+            }
+        }
+
+        window.updateStatus = async (appId, newStatus) => {
+            if(!confirm(`Mark this application as ${newStatus}?`)) return;
+
+            try {
+                const appRef = doc(db, "adoptions", appId);
+                await updateDoc(appRef, {
+                    status: newStatus
+                });
+                alert("Status updated!");
+                loadApplications(); 
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Could not update status.");
+            }
+        };
+
+        loadApplications();
+    </script>
 </body>
 </html>
