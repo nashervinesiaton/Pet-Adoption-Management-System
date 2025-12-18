@@ -11,7 +11,6 @@
 <body>
     <aside class="sidebar">
         <h1><a href="index.html">FurEverHome</a></h1>
-        
         <ul class="sidebar-contents">
             <p>MAIN</p>
             <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
@@ -24,7 +23,6 @@
             <li><a href="adoptions.html"><i class="fas fa-heart"></i> Adoptions</a></li>
             <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
         </ul>
-
         <button class="add" onclick="window.location.href='add_pet.html'">+ Add New Pet</button>
     </aside>
 
@@ -33,124 +31,130 @@
             <div class="navbar-left">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search pets, applicants, or tag numbers..." />
+                    <input type="text" placeholder="Search conversations..." id="searchInp" />
                 </div>
             </div>
 
             <div class="navbar-right">
-                <div class="notification-icon">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </div>
-
                 <div class="admin-profile">
                     <img src="assets/img/admin-profile.jpg" alt="Admin Profile" class="profile-img" />
                     <div class="profile-info">
                         <p class="profile-name">Admin User</p>
                         <p class="profile-role">Administrator</p>
                     </div>
-                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </nav>
 
         <main>
             <h1>Inbox</h1>
-            <p>Manage communication with adopters, foster parents, and volunteers</p>
+            <p>Manage communication with adopters and foster parents</p>
 
             <div class="inbox-container">
                 <div class="conversation-list">
-                    <div class="search-conversations">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search conversations..." />
-                    </div>
-
-                    <div class="conversations">
-                        <div class="conversation-item active">
-                            <div class="avatar">SJ</div>
-                            <div class="conversation-info">
-                                <h3>Sarah Johnson</h3>
-                                <p class="role">Adopter</p>
-                                <p class="preview">Thank you! When can we sched...</p>
-                                <span class="time">2m ago</span>
-                            </div>
-                            <span class="online-indicator"></span>
-                        </div>
-
-                        <div class="conversation-item">
-                            <div class="avatar">MC</div>
-                            <div class="conversation-info">
-                                <h3>Mike Chen</h3>
-                                <p class="role">Foster Parent</p>
-                                <p class="preview">Luna is doing great! She loves th...</p>
-                                <span class="time">1h ago</span>
-                            </div>
-                        </div>
-
-                        <div class="conversation-item">
-                            <div class="avatar">ED</div>
-                            <div class="conversation-info">
-                                <h3>Emily Davis</h3>
-                                <p class="role">Volunteer</p>
-                                <p class="preview">I can help with the weekend ado...</p>
-                                <span class="time">3h ago</span>
-                            </div>
-                        </div>
-
-                        <div class="conversation-item">
-                            <div class="avatar">TW</div>
-                            <div class="conversation-info">
-                                <h3>Tom Wilson</h3>
-                                <p class="role">Adopter</p>
-                                <p class="preview">Perfect! See you then.</p>
-                                <span class="time">1d ago</span>
-                            </div>
-                        </div>
+                    <div class="conversations" id="convoList">
+                        <p style="padding: 20px; color: #9ca3af;">Loading messages...</p>
                     </div>
                 </div>
 
-                <div class="message-thread">
+                <div class="message-thread" id="threadArea" style="display: none;">
                     <div class="thread-header">
                         <div class="thread-user">
-                            <h2>Sarah Johnson</h2>
-                            <p>Adopter</p>
-                        </div>
-                        <a href="#" class="view-profile">View Profile</a>
-                    </div>
-
-                    <div class="messages">
-                        <div class="message incoming">
-                            <div class="message-bubble">
-                                <p>Hi, I submitted an application for Rex. Any updates?</p>
-                                <span class="message-time">10:30 AM</span>
-                            </div>
-                        </div>
-
-                        <div class="message outgoing">
-                            <div class="message-bubble">
-                                <p id="response">Hello Sarah! We reviewed your application and everything looks great. We'd like to move forward with a home visit.</p>
-                                <span class="message-time">10:45 AM</span>
-                            </div>
-                        </div>
-
-                        <div class="message incoming">
-                            <div class="message-bubble">
-                                <p>Thank you! When can we schedule the home visit?</p>
-                                <span class="message-time">10:50 AM</span>
-                            </div>
+                            <h2 id="chatName">Select a message</h2>
+                            <p id="chatEmail"></p>
                         </div>
                     </div>
+
+                    <div class="messages" id="messageBox">
+                        </div>
 
                     <div class="message-input">
                         <i class="fas fa-paperclip"></i>
-                        <input type="text" placeholder="Type your message..." />
-                        <button class="send-btn">
+                        <input type="text" placeholder="Reply is coming soon..." disabled />
+                        <button class="send-btn" disabled>
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </div>
                 </div>
+
+                <div id="noSelect" style="flex: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #9ca3af; background: #fff;">
+                    <i class="fas fa-envelope-open-text" style="font-size: 4rem; margin-bottom: 20px;"></i>
+                    <p>Click a conversation to read the message</p>
+                </div>
             </div>
         </main>
     </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+            authDomain: "fureverhome-85730.firebaseapp.com",
+            projectId: "fureverhome-85730",
+            storageBucket: "fureverhome-85730.appspot.com",
+            messagingSenderId: "710238936352",
+            appId: "1:710238936352:web:4485728fa66e83d8344b45"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const convoList = document.getElementById('convoList');
+        const threadArea = document.getElementById('threadArea');
+        const noSelect = document.getElementById('noSelect');
+        const messageBox = document.getElementById('messageBox');
+        const chatName = document.getElementById('chatName');
+        const chatEmail = document.getElementById('chatEmail');
+
+        const q = query(collection(db, "messages"), orderBy("timestamp", "desc"));
+        
+        onSnapshot(q, (snapshot) => {
+            convoList.innerHTML = "";
+            if (snapshot.empty) {
+                convoList.innerHTML = '<p style="padding: 20px; color: #9ca3af;">No messages yet.</p>';
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const msg = doc.data();
+                const initials = msg.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+                
+                const item = document.createElement('div');
+                item.className = "conversation-item";
+                item.innerHTML = `
+                    <div class="avatar">${initials}</div>
+                    <div class="conversation-info">
+                        <h3>${msg.name}</h3>
+                        <p class="preview">${msg.text.substring(0, 25)}...</p>
+                    </div>
+                `;
+                
+                item.onclick = () => {
+                    noSelect.style.display = "none";
+                    threadArea.style.display = "flex";
+                    chatName.innerText = msg.name;
+                    chatEmail.innerText = msg.email;
+                    
+                    const date = msg.timestamp ? msg.timestamp.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : "Just now";
+
+                    messageBox.innerHTML = `
+                        <div class="message incoming">
+                            <div class="message-bubble">
+                                <p>${msg.text}</p>
+                                <span class="message-time">${date}</span>
+                            </div>
+                        </div>
+                    `;
+
+                    document.querySelectorAll('.conversation-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                };
+                
+                convoList.appendChild(item);
+            });
+        });
+    </script>
 </body>
 </html>
