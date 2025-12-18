@@ -83,13 +83,11 @@
             snapshot.forEach(docSnap => {
                 const log = docSnap.data();
                 
-                // Logic for your Status Badges
                 let statusClass = "excellent";
                 let statusText = "Excellent";
                 if(log.friendliness < 75) { statusClass = "progress"; statusText = "In Progress"; }
                 if(log.friendliness < 50) { statusClass = "danger"; statusText = "Needs Attention"; }
 
-                // USING YOUR EXACT HTML STRUCTURE
                 const card = `
                 <div class="behavior-card">
                     <div class="behavior-thumb">
