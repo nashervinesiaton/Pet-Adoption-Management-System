@@ -19,7 +19,6 @@
             <p>ANIMALS</p>
             <li><a href="all_pets.html"><i class="fas fa-paw"></i> All Pets</a></li>
             <li><a href="medical.html"><i class="fas fa-stethoscope"></i> Medical Bay</a></li>
-            <li><a href="behavioral.html"><i class="fas fa-brain"></i> Behavioral Logs</a></li>
             <p>OPERATIONS</p>
             <li><a href="adoptions.html"><i class="fas fa-heart"></i> Adoptions</a></li>
             <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
@@ -49,51 +48,52 @@
                         <p class="profile-name">Admin User</p>
                         <p class="profile-role">Administrator</p>
                     </div>
-                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </nav>
 
         <main>
             <h1>Command Center</h1>
-            <p> Welcome back! Here's whats happening today.</p>
+            <p>Welcome back! Here is your real-time database overview.</p>
 
             <div class="stats-overview">
+                
                 <div class="stat-card">
                     <div class="stat-icon occupancy">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-dog"></i>
                     </div>
-                    <h3>Occupancy</h3>
-                    <p class="stat-number">38/50</p>
-                    <h4>Kennels</h4>
-                    <div class="stat-progress">
-                        <div class="progress-bar" style="width: 76%;"></div>
-                    </div>
+                    <h3>Total Database</h3>
+                    <p class="stat-number" id="countTotal">Loading...</p>
+                    <h4>Registered Pets</h4>
                 </div>
+
                 <div class="stat-card">
                     <div class="stat-icon adoption-rate">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-heart"></i>
                     </div>
-                    <h3>Adoption Rate</h3>
-                    <p class="stat-number">+12%</p>
-                    <h4>This Month</h4>
+                    <h3>Total Adoptions</h3>
+                    <p class="stat-number" id="countAdopted">...</p>
+                    <h4>Found Homes</h4>
                 </div>
+
                 <div class="stat-card">
                     <div class="stat-icon medical">
-                        <i class="fas fa-triangle-exclamation"></i>
+                        <i class="fas fa-home"></i>
                     </div>
-                    <h3>Medical Alerts</h3>
-                    <p class="stat-number" style="color: #e91e63;">3</p>
-                    <h4>Critical</h4>
+                    <h3>In Foster Care</h3>
+                    <p class="stat-number" id="countFoster" style="color: #e91e63;">...</p>
+                    <h4>Currently Off-site</h4>
                 </div>
+
                 <div class="stat-card">
                     <div class="stat-icon pending">
-                        <i class="fas fa-clipboard"></i>
+                        <i class="fas fa-check-circle"></i>
                     </div>
-                    <h3>Pending Applications</h3>
-                    <p class="stat-number">8</p>
-                    <h4>Reviews</h4>
+                    <h3>Available Now</h3>
+                    <p class="stat-number" id="countAvailable">...</p>
+                    <h4>Ready for Adoption</h4>
                 </div>
+
             </div>
 
             <div class="feed-priorities-wrapper">
@@ -108,12 +108,12 @@
                             <i class="fas fa-paw"></i>
                         </div>
                         <div class="activity-details">
-                            <h3>Dog "Rex" intake processed</h3>
-                            <p>New intake - 2yr old German Shepherd, male</p>
+                            <h3>Database Connected</h3>
+                            <p>Real-time stats loaded successfully</p>
                         </div>
                         <div class="activity-time">
                             <i class="fas fa-clock"></i>
-                            <span>10 minutes ago</span>
+                            <span>Just now</span>
                         </div>
                     </div>
 
@@ -130,69 +130,13 @@
                             <span>1 hour ago</span>
                         </div>
                     </div>
-
-                    <div class="activity-item">
-                        <div class="activity-icon adoption">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="activity-details">
-                            <h3>"Buddy" adoption finalized</h3>
-                            <p>Trial period completed successfully</p>
-                        </div>
-                        <div class="activity-time">
-                            <i class="fas fa-clock"></i>
-                            <span>2 hours ago</span>
-                        </div>
-                    </div>
-
-                    <div class="activity-item">
-                        <div class="activity-icon medical">
-                            <i class="fas fa-link"></i>
-                        </div>
-                        <div class="activity-details">
-                            <h3>Vaccination due for "Whiskers"</h3>
-                            <p>Rabies booster required within 7 days</p>
-                        </div>
-                        <div class="activity-time">
-                            <i class="fas fa-clock"></i>
-                            <span>3 hours ago</span>
-                        </div>
-                    </div>
-
-                    <div class="activity-item">
-                        <div class="activity-icon pet-intake">
-                            <i class="fas fa-paw"></i>
-                        </div>
-                        <div class="activity-details">
-                            <h3>Cat "Mittens" intake processed</h3>
-                            <p>Stray - approx 1yr old, female</p>
-                        </div>
-                        <div class="activity-time">
-                            <i class="fas fa-clock"></i>
-                            <span>5 hours ago</span>
-                        </div>
-                    </div>
-
-                    <div class="activity-item">
-                        <div class="activity-icon application">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <div class="activity-details">
-                            <h3>Application for "Max" submitted</h3>
-                            <p>Smith family - pending review</p>
-                        </div>
-                        <div class="activity-time">
-                            <i class="fas fa-clock"></i>
-                            <span>6 hours ago</span>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <div class="priorities-section">
                 <div class="priorities-header">
                     <h2>Today's Priorities</h2>
-                    <span class="pending-count">5 pending</span>
+                    <span class="pending-count">3 pending</span>
                 </div>
                 <div class="priorities-list">
                     <div class="priority-task">
@@ -206,34 +150,63 @@
                         <label for="task2">Home Visit: 2 PM</label>
                         <span class="priority-badge high">High Priority</span>
                     </div>
-
-                    <div class="priority-task">
-                        <input type="checkbox" id="task3" class="priority-checkbox" />
-                        <label for="task3">Review adoption application - Rex</label>
-                    </div>
-
+                    
                     <div class="priority-task completed">
                         <input type="checkbox" id="task4" class="priority-checkbox" checked />
-                        <label for="task4">Order dog food supplies</label>
-                    </div>
-
-                    <div class="priority-task">
-                        <input type="checkbox" id="task5" class="priority-checkbox" />
-                        <label for="task5">Update website with new arrivals</label>
-                    </div>
-
-                    <div class="priority-task">
-                        <input type="checkbox" id="task6" class="priority-checkbox" />
-                        <label for="task6">Schedule behavioral assessment</label>
-                    </div>
-
-                    <div class="add-task">
-                        <a href="#"><i class="fas fa-plus"></i> Add Task</a>
+                        <label for="task4">Update database stats</label>
                     </div>
                 </div>
             </div>
             </div>
         </main>
     </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+            authDomain: "fureverhome-85730.firebaseapp.com",
+            projectId: "fureverhome-85730",
+            storageBucket: "fureverhome-85730.appspot.com",
+            messagingSenderId: "710238936352",
+            appId: "1:710238936352:web:4485728fa66e83d8344b45"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function loadStats() {
+            try {
+                const snapshot = await getDocs(collection(db, "pets"));
+                
+                let total = 0;
+                let available = 0;
+                let foster = 0;
+                let adopted = 0;
+
+                snapshot.forEach((doc) => {
+                    const pet = doc.data();
+                    total++; 
+
+                    if (pet.status === "Available") available++;
+                    if (pet.status === "Foster Care") foster++;
+                    if (pet.status === "Adopted") adopted++;
+                });
+
+                document.getElementById("countTotal").innerText = total;
+                document.getElementById("countAvailable").innerText = available;
+                document.getElementById("countFoster").innerText = foster;
+                document.getElementById("countAdopted").innerText = adopted;
+
+            } catch (error) {
+                console.error("Error loading stats:", error);
+            }
+        }
+
+        loadStats();
+    </script>
+
 </body>
 </html>
