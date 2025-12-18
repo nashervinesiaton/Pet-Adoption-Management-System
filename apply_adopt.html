@@ -83,12 +83,16 @@
                 const q = query(collection(db, "pets"), where("status", "==", "Available"));
                 const snapshot = await getDocs(q);
                 
+                if (snapshot.empty) {
+                     petSelect.innerHTML = '<option value="">No pets currently available</option>';
+                     return;
+                }
+
                 snapshot.forEach(doc => {
                     const pet = doc.data();
                     const option = document.createElement("option");
                     option.value = doc.id;
                     option.text = pet.name + " (" + pet.breed + ")";
-                    // We save the pet name in a hidden attribute so we can save it to the application easily
                     option.setAttribute('data-name', pet.name);
                     petSelect.appendChild(option);
                 });
@@ -104,13 +108,18 @@
             const petSelect = document.getElementById('petSelect');
             const selectedOption = petSelect.options[petSelect.selectedIndex];
             
+            if (!petSelect.value) {
+                alert("Please select a pet.");
+                return;
+            }
+
             const applicationData = {
                 petId: petSelect.value,
                 petName: selectedOption.getAttribute('data-name'),
                 applicantName: document.getElementById('applicantName').value,
                 email: document.getElementById('applicantEmail').value,
                 reason: document.getElementById('reason').value,
-                status: "Pending", 
+                status: "Pending",
                 submittedAt: new Date().toISOString()
             };
 
