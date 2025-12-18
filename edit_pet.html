@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Pet - FurEverHome</title>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+      
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .form-container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        h2 { margin-top: 0; color: #1f2937; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #4b5563; font-weight: 500; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; }
+        
+        .btn-group { display: flex; gap: 10px; margin-top: 30px; }
+        .save-btn { flex: 1; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .save-btn:hover { background: #059669; }
+        .cancel-btn { flex: 1; background: #ef4444; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; text-align: center; text-decoration: none; }
+        .cancel-btn:hover { background: #dc2626; }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2><i class="fas fa-pen"></i> Edit Pet Details</h2>
+        
+        <form id="editPetForm">
+            <div class="form-group">
+                <label>Pet Name</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Breed</label>
+                <input type="text" id="breed" required>
+            </div>
+
+            <div class="form-group">
+                <label>Age (Years)</label>
+                <input type="number" id="age" required>
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select id="status">
+                    <option value="Available">Available</option>
+                    <option value="Foster Care">Foster Care</option>
+                    <option value="Adopted">Adopted</option>
+                    <option value="Medical Hold">Medical Hold</option>
+                </select>
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="save-btn">Save Changes</button>
+                <a href="all_pets.html" class="cancel-btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2xdD4HpSRaulBUnLGA4Wxqb-mXFYKVHF",
+            authDomain: "fureverhome-85730.firebaseapp.com",
+            projectId: "fureverhome-85730",
+            storageBucket: "fureverhome-85730.appspot.com",
+            messagingSenderId: "710238936352",
+            appId: "1:710238936352:web:4485728fa66e83d8344b45"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const petId = urlParams.get('id');
+
+        if (!petId) {
+            alert("No pet selected!");
+            window.location.href = "all_pets.html";
+        }
+
+        async function loadPetData() {
+            const docRef = doc(db, "pets", petId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                document.getElementById('name').value = data.name;
+                document.getElementById('breed').value = data.breed;
+                document.getElementById('age').value = data.age;
+                document.getElementById('status').value = data.status;
+            } else {
+                alert("Pet not found!");
+                window.location.href = "all_pets.html";
+            }
+        }
+
+        loadPetData();
+
+        document.getElementById('editPetForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const docRef = doc(db, "pets", petId);
+            
+            try {
+                await updateDoc(docRef, {
+                    name: document.getElementById('name').value,
+                    breed: document.getElementById('breed').value,
+                    age: document.getElementById('age').value,
+                    status: document.getElementById('status').value
+                });
+                
+                alert("Pet updated successfully!");
+                window.location.href = "all_pets.html"; 
+            } catch (error) {
+                console.error("Error updating pet:", error);
+                alert("Error updating pet.");
+            }
+        });
+    </script>
+
+</body>
+</html>
