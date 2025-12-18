@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     
     <style>
-       
         .pet-card {
             background: white;
             border-radius: 12px;
@@ -34,7 +33,6 @@
             object-position: center;
         }
 
-        
         .availability-badge {
             position: absolute;
             top: 10px;
@@ -52,30 +50,41 @@
         .availability-badge.adopted { background-color: #ef4444; }
         .availability-badge.foster { background-color: #f59e0b; }
 
-        .btn-delete {
+        /* --- BUTTON STYLES --- */
+        .btn-action {
             position: absolute;
             top: 10px;
-            left: 10px;
             width: 32px;
             height: 32px;
-            background-color: white;
             border-radius: 50%;
             border: none;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            color: #ef4444;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: all 0.2s ease;
             z-index: 10;
         }
 
-        .btn-delete:hover {
-            background-color: #ef4444;
-            color: white;
-            transform: scale(1.1); 
+        .btn-action:hover { transform: scale(1.1); }
+
+        /* Delete Button (Red) */
+        .btn-delete {
+            left: 10px;
+            background-color: white;
+            color: #ef4444;
         }
+        .btn-delete:hover { background-color: #ef4444; color: white; }
+
+        /* Edit Button (Yellow) - positioned next to delete */
+        .btn-edit {
+            left: 50px; /* 10px (left) + 32px (width) + 8px (gap) */
+            background-color: white;
+            color: #f59e0b;
+        }
+        .btn-edit:hover { background-color: #f59e0b; color: white; }
+
     </style>
 </head>
 
@@ -127,7 +136,6 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-       
         import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -143,14 +151,12 @@
         const db = getFirestore(app);
         const petsGrid = document.getElementById("petsGrid");
 
+        // DELETE FUNCTION
         window.deletePet = async (petId) => {
-            
             if(confirm("Are you sure you want to delete this pet? This cannot be undone.")) {
                 try {
-                    
                     await deleteDoc(doc(db, "pets", petId));
                     alert("Pet deleted successfully!");
-                    
                     location.reload(); 
                 } catch (error) {
                     console.error("Error deleting pet:", error);
@@ -159,7 +165,12 @@
             }
         };
 
+        // EDIT FUNCTION (Redirects to the edit page)
+        window.editPet = (petId) => {
+            window.location.href = `edit_pet.html?id=${petId}`;
+        }
 
+        // LOAD CARDS
         const snapshot = await getDocs(collection(db, "pets"));
 
         snapshot.forEach((documentSnapshot) => {
@@ -176,8 +187,12 @@
 
             card.innerHTML = `
                 <div class="pet-image-container">
-                    <button class="btn-delete" onclick="deletePet('${petId}')" title="Delete Pet">
+                    <button class="btn-action btn-delete" onclick="deletePet('${petId}')" title="Delete Pet">
                         <i class="fas fa-trash"></i>
+                    </button>
+
+                    <button class="btn-action btn-edit" onclick="editPet('${petId}')" title="Edit Pet">
+                        <i class="fas fa-pen"></i>
                     </button>
 
                     <img src="${imageSrc}" class="pet-image" alt="${pet.name}" onerror="this.src='assets/img/default-dog.jpg'" />
