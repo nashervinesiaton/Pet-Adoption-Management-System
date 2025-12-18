@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FurEverHome - Dashboard</title>
+    <title>FurEverHome - Adoptions</title>
     <link rel="stylesheet" href="assets/css/admin.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
@@ -11,6 +11,7 @@
 <body>
     <aside class="sidebar">
         <h1><a href="index.html">FurEverHome</a></h1>
+        
         <ul class="sidebar-contents">
             <p>MAIN</p>
             <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
@@ -22,8 +23,9 @@
             <p>OPERATIONS</p>
             <li><a href="adoptions.html" class="active"><i class="fas fa-heart"></i> Adoptions</a></li>
             <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
-            <button class="add">+ Add New Pet</button>
         </ul>
+
+        <button class="add" onclick="window.location.href='add_pet.html'">+ Add New Pet</button>
     </aside>
 
     <div class="main-container">
@@ -64,28 +66,24 @@
             </div>
 
             <div class="pipeline-board">
-                <!-- New Inquiry Column -->
                 <div class="pipeline-column">
                     <div class="column-header">
                         <span class="column-title">New Inquiry</span>
                         <span class="column-count">3</span>
                     </div>
                     <div class="column-cards">
-                        <!-- Card 1 -->
                         <div class="applicant-card">
                             <p class="applicant-name">Sarah Johnson</p>
                             <p class="applicant-pet">Pet: Rex</p>
                             <p class="card-status">New</p>
                             <span class="status-tag">First-time owner</span>
                         </div>
-                        <!-- Card 2 -->
                         <div class="applicant-card">
                             <p class="applicant-name">Mike Chen</p>
                             <p class="applicant-pet">Pet: Luna</p>
                             <p class="card-status">Contacted</p>
                             <span class="status-tag">Has yard</span>
                         </div>
-                        <!-- Card 3 -->
                         <div class="applicant-card">
                             <p class="applicant-name">Emily Davis</p>
                             <p class="applicant-pet">Pet: Max</p>
@@ -95,14 +93,12 @@
                     </div>
                 </div>
 
-                <!-- Interviewing Column -->
                 <div class="pipeline-column">
                     <div class="column-header">
                         <span class="column-title">Interviewing</span>
                         <span class="column-count">2</span>
                     </div>
                     <div class="column-cards">
-                        <!-- Card 1 -->
                         <div class="applicant-card">
                             <p class="applicant-name">Tom Wilson</p>
                             <p class="applicant-pet">Pet: Buddy</p>
@@ -110,7 +106,6 @@
                             <span class="status-tag">Phone Interview Passed</span>
                             <button class="card-action">Schedule Interview</button>
                         </div>
-                        <!-- Card 2 -->
                         <div class="applicant-card">
                             <p class="applicant-name">Lisa Anderson</p>
                             <p class="applicant-pet">Pet: Bella</p>
@@ -121,14 +116,12 @@
                     </div>
                 </div>
 
-                <!-- Home Visit Column -->
                 <div class="pipeline-column">
                     <div class="column-header">
                         <span class="column-title">Home Visit</span>
                         <span class="column-count">1</span>
                     </div>
                     <div class="column-cards">
-                        <!-- Card 1 -->
                         <div class="applicant-card">
                             <p class="applicant-name">James Brown</p>
                             <p class="applicant-pet">Pet: Charlie</p>
@@ -138,21 +131,18 @@
                     </div>
                 </div>
 
-                <!-- Trial Period Column -->
                 <div class="pipeline-column">
                     <div class="column-header">
                         <span class="column-title">Trial Period</span>
                         <span class="column-count">2</span>
                     </div>
                     <div class="column-cards">
-                        <!-- Card 1 -->
                         <div class="applicant-card">
                             <p class="applicant-name">Anna Martinez</p>
                             <p class="applicant-pet">Pet: Daisy</p>
                             <p class="card-status">Day 5 of 14</p>
                             <span class="status-tag">Going well</span>
                         </div>
-                        <!-- Card 2 -->
                         <div class="applicant-card">
                             <p class="applicant-name">Robert Taylor</p>
                             <p class="applicant-pet">Pet: Rocky</p>
@@ -162,14 +152,12 @@
                     </div>
                 </div>
 
-                <!-- Finalized Column -->
                 <div class="pipeline-column">
                     <div class="column-header">
                         <span class="column-title">Finalized</span>
                         <span class="column-count">1</span>
                     </div>
                     <div class="column-cards">
-                        <!-- Card 1 -->
                         <div class="applicant-card">
                             <p class="applicant-name">David Lee</p>
                             <p class="applicant-pet">Pet: Cooper</p>

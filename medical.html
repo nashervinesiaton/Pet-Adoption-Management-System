@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FurEverHome - Dashboard</title>
+    <title>FurEverHome - Medical Bay</title>
     <link rel="stylesheet" href="assets/css/admin.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
 <body>
     <aside class="sidebar">
-        <h1>FurEverHome</h1>
+        <h1><a href="index.html">FurEverHome</a></h1>
+        
         <ul class="sidebar-contents">
             <p>MAIN</p>
             <li><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
             <li><a href="inbox.html"><i class="fas fa-inbox"></i> Inbox</a></li>
             <p>ANIMALS</p>
             <li><a href="all_pets.html"><i class="fas fa-paw"></i> All Pets</a></li>
-            <li><a href="medical.html"class="active"><i class="fas fa-stethoscope"></i> Medical Bay</a></li>
+            <li><a href="medical.html" class="active"><i class="fas fa-stethoscope"></i> Medical Bay</a></li>
             <li><a href="behavioral.html"><i class="fas fa-brain"></i> Behavioral Logs</a></li>
             <p>OPERATIONS</p>
             <li><a href="adoptions.html"><i class="fas fa-heart"></i> Adoptions</a></li>
             <li><a href="foster.html"><i class="fas fa-users"></i> Foster Network</a></li>
-            <button class="add">+ Add New Pet</button>
         </ul>
+
+        <button class="add" onclick="window.location.href='add_pet.html'">+ Add New Pet</button>
     </aside>
+
     <div class="main-container">
         <nav class="navbar">
             <div class="navbar-left">
@@ -139,49 +142,49 @@
                 </div>
 
                 <div class="recent-container">
-                <div class="recent-header">
-                    <i class="fas fa-check-circle"></i>
-                    <h2>Recent Activity</h2>
+                    <div class="recent-header">
+                        <i class="fas fa-check-circle"></i>
+                        <h2>Recent Activity</h2>
+                    </div>
+
+                    <div class="recent-contents">
+                        <div class="recent-item">
+                            <div class="recent-dot"></div>
+                            <div class="recent-text">
+                                <p class="recent-name">Charlie</p>
+                                <p class="recent-description">Vaccination completed - DHPP</p>
+                                <p class="recent-date">2024-12-06</p>
+                            </div>
+                            <div class="recent-check">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+
+                        <div class="recent-item">
+                            <div class="recent-dot"></div>
+                            <div class="recent-text">
+                                <p class="recent-name">Bella</p>
+                                <p class="recent-description">Health screening - General exam</p>
+                                <p class="recent-date">2024-12-05</p>
+                            </div>
+                            <div class="recent-check">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+
+                        <div class="recent-item">
+                            <div class="recent-dot"></div>
+                            <div class="recent-text">
+                                <p class="recent-name">Rocky</p>
+                                <p class="recent-description">Deworming treatment - Panacur</p>
+                                <p class="recent-date">2024-12-04</p>
+                            </div>
+                            <div class="recent-check">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="recent-contents">
-                    <div class="recent-item">
-                        <div class="recent-dot"></div>
-                        <div class="recent-text">
-                            <p class="recent-name">Charlie</p>
-                            <p class="recent-description">Vaccination completed - DHPP</p>
-                            <p class="recent-date">2024-12-06</p>
-                        </div>
-                        <div class="recent-check">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                    </div>
-
-                    <div class="recent-item">
-                        <div class="recent-dot"></div>
-                        <div class="recent-text">
-                            <p class="recent-name">Bella</p>
-                            <p class="recent-description">Health screening - General exam</p>
-                            <p class="recent-date">2024-12-05</p>
-                        </div>
-                        <div class="recent-check">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                    </div>
-
-                    <div class="recent-item">
-                        <div class="recent-dot"></div>
-                        <div class="recent-text">
-                            <p class="recent-name">Rocky</p>
-                            <p class="recent-description">Deworming treatment - Panacur</p>
-                            <p class="recent-date">2024-12-04</p>
-                        </div>
-                        <div class="recent-check">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
             </div>
         </main>
     </div>
