@@ -3,7 +3,7 @@
 <head>
 </head>
 <body>
-<img src="img/Header.png" alt="Flow diagram"> 
+<img src="assets/ReadMe/LogoCover.png" alt="LogoCover"> 
 
 # FurEverHome: Pet Adoption Record System
 
