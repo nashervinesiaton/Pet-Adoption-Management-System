@@ -40,7 +40,6 @@
 - Check the occupancy progress bar and medical alert cards.
 - The activity feed tells the admin exactly what happened while they were away.
 
-
 ### 2. Communication and Inbox
 - Open the Notification Center to see new messages. 
   - Select the Unified Inbox.
@@ -54,14 +53,25 @@
   - Upload photos.
   - The system validates your data and adds the pet to the All Pets grid.
 
-### 3. Managing the Adoption Pipeline
+### 4. Manage the Adoption Pipeline
 - Drag an application card from the New Inquiry to Interviewing.
 - Click Schedule Interview to Open the modal and select a time slot.
-- Move Cards to Trial Period after home visits are successful. 
+- Move Cards to Trial Period after home visits are successful.
 
-### 6. Logout / Exit
-- The admin can log out (if authentication is implemented) or simply close the system.  
-- Session ends, and the system returns to the start state.
+  
+### 5. Clinical and Behavioral Updates
+- Select a pet to view their 360 Profile.
+  - Medical Bay: Update vaccination records or log surgeries.
+  - Behavioral Logs: Use sliders to rate trainability or energy levels.
+  - These updates sync across the system for the team to stay informed. 
+
+
+### 6. Foster Placement
+- Navigate through Foster Network
+  - Filter for Has Vacancy or Special Needs Experienced".
+  - Review capacity meters to find an open home.
+  - Click Assign Pet to move an animal into a foster home.
+ 
  <h2>Developers</h2>
  <img src="img/Team.png">
   </body>
