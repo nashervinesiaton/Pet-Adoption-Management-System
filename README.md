@@ -73,6 +73,6 @@
   - Click Assign Pet to move an animal into a foster home.
  
  <h2>Developers</h2>
- <img src="assets/ReadMe/LogoCover.png">
+ <img src="assets/ReadMe/Developers.png">
   </body>
 </html>
