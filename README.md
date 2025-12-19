@@ -43,46 +43,10 @@
 
 ### 2. Communication and Inbox
 - Open the Notification Center to see new messages. 
+  - Select the Unified Inbox.
+  - Use the two-column chat to respond to adopters or foster parents.
+  - Identify contacts quickly by their colored tags such as Purple for Foster Parent
 
-### 2. Add Pet
-- Admin selects *Add Pet* from the navigation bar.  
-- A form appears where the admin enters:
-  - Pet ID (auto-generated or manually input)  
-  - Pet Name  
-  - Breed  
-  - Age  
-  - Gender  
-  - Status (e.g., Available, Adopted, Pending Adoption)  
-- When the admin clicks *Save*, the system:
-  - Validates the input data.  
-  - Inserts the new record into the *database (pets table)*.  
-  - Displays a message: “Pet successfully added.”
-
-### 3. View Pets
-- Admin clicks *View Pets*.  
-- The system retrieves all records from the database using a *SELECT* query.  
-- Results are displayed in a table format, showing:  
-  Pet ID | Name | Breed | Age | Gender | Status | Actions (Edit / Delete)  
-- The admin can:
-  - Review current records.  
-  - Click *Edit* or *Delete* beside a pet entry.
-
-### 4. Update Pet
-- When the admin clicks *Edit*, the system loads the selected pet’s details into an editable form.  
-- Admin modifies any details (e.g., updates the status from “Available” to “Adopted”).  
-- On clicking *Update*, the system:
-  - Validates the updated data.  
-  - Executes an *UPDATE* query to modify the record in the database.  
-  - Displays: “Pet record successfully updated.”
-
-### 5. Delete Pet
-- Admin clicks *Delete* beside a pet record.  
-- A confirmation prompt appears (“Are you sure you want to delete this pet?”).  
-- If confirmed:
-  - The system executes a *DELETE* query to remove the record from the database.  
-  - Displays: “Pet record successfully deleted.”  
-- If canceled:
-  - No changes occur, and the admin is returned to the pet list.
 
 ### 6. Logout / Exit
 - The admin can log out (if authentication is implemented) or simply close the system.  
