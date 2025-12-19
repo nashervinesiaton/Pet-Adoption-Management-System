@@ -47,6 +47,17 @@
   - Use the two-column chat to respond to adopters or foster parents.
   - Identify contacts quickly by their colored tags such as Purple for Foster Parent
 
+### 3. Add New Pets
+- Click the + Add New Pet button. This opens the Add Pet Wizard.
+  - Enter basic details.
+  - Log medical status.
+  - Upload photos.
+  - The system validates your data and adds the pet to the All Pets grid.
+
+### 3. Managing the Adoption Pipeline
+- Drag an application card from the New Inquiry to Interviewing.
+- Click Schedule Interview to Open the modal and select a time slot.
+- Move Cards to Trial Period after home visits are successful. 
 
 ### 6. Logout / Exit
 - The admin can log out (if authentication is implemented) or simply close the system.  
