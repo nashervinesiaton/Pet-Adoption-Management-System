@@ -13,7 +13,7 @@
 ---
 
 # Features 
-- **Comman Center Dashboard:** To track occupancy, adoption rates, and medical alerts through real-time metric cards.
+- **Command Center Dashboard:** To track occupancy, adoption rates, and medical alerts through real-time metric cards.
 - **Pet Profile 360:** To access medical history, behavioral analysis, and personality bios in one tabbed view.
 - **Adoption Pipeline:** To move applications through five stages from new inquiry to finalized using a drag and drop Kanban board.
 - **Medical Bay & Behavioral Logs:** To log vaccinations, surgeries, and social assessments with progress bars and score sliders.
@@ -35,13 +35,14 @@
 
 ##  System Flow of FurEverHome: Pet Adoption Record System
 
-### 1. System Start
-- The admin opens the system through a web browser.  
-- The homepage or dashboard appears with navigation options:  
-  - Add Pet  
-  - View Pets  
-  - Update Pet  
-  - Delete Pet  
+### 1. Daily Overview
+- The admin log in to the Command Center.
+- Check the occupancy progress bar and medical alert cards.
+- The activity feed tells the admin exactly what happened while they were away.
+
+
+### 2. Communication and Inbox
+- Open the Notification Center to see new messages. 
 
 ### 2. Add Pet
 - Admin selects *Add Pet* from the navigation bar.  
