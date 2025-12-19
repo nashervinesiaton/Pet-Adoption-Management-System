@@ -13,11 +13,12 @@
 ---
 
 # Features 
-- **Add Pets:** Create new pet profiles with details like name, breed, age and status.
-- **View Pets:** Display all pet records in a simple organized list.
-- **Update Pets:** Edit and Update existing pet information.
-- **Delete Pet Record:** Remove records of pets that are no longer available for adoption.
-
+- **Comman Center Dashboard:** To track occupancy, adoption rates, and medical alerts through real-time metric cards.
+- **Pet Profile 360:** To access medical history, behavioral analysis, and personality bios in one tabbed view.
+- **Adoption Pipeline:** To move applications through five stages from new inquiry to finalized using a drag and drop Kanban board.
+- **Medical Bay & Behavioral Logs:** To log vaccinations, surgeries, and social assessments with progress bars and score sliders.
+- **Unified Inbox & Foster Network:** To chat with adopters and track the capacity of foster home through a dedicated management grid.
+- **Notification Center:** To receive color-coded alerts for new applications or criticial medical tasks. 
 ---
 
 ## User Role
