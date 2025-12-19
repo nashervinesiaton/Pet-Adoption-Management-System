@@ -8,7 +8,7 @@
 # FurEverHome: Pet Adoption Record System
 
 ## Description
-**FurEver Home** is a data-driven command center for animal shelters. You manage the entire shelter lifecycle from a single, flat-design interface. This system replaces simple lists with analytics, clinical logs, and automated pipelines.
+**FurEverHome** is a data-driven command center for animal shelters. You manage the entire shelter lifecycle from a single, flat-design interface. This system replaces simple lists with analytics, clinical logs, and automated pipelines.
 
 ---
 
