@@ -68,7 +68,7 @@
 
 ### 6. Foster Placement
 - Navigate through Foster Network
-  - Filter for Has Vacancy or Special Needs Experienced".
+  - Filter for Has Vacancy or Special Needs Experienced.
   - Review capacity meters to find an open home.
   - Click Assign Pet to move an animal into a foster home.
  
